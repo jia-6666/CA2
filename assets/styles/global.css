@@ -1,0 +1,15 @@
+:root{
+    --primary-color: oklch(0.5314 0.2439 267.55);
+    --bg-color: oklch(0.9688 0.0148 277.85);
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.bg-primary{
+    background-color: var(--primary-color);
+    color: white;
+}
