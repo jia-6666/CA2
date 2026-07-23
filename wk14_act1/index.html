@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +10,39 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col justify-center items-center p-6 text-gray-800">
+
+<body class="bg-gray-50 min-h-screen flex flex-col justify-between items-center text-gray-800">
+  <!-- TOP NAVIGATION BAR -->
+  <nav class="w-full bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-6 py-3.5 flex justify-between items-center">
+      <!-- Logo / Brand Title -->
+      <a href="#" id="nav-brand"
+        class="flex items-center gap-2 font-black text-xl tracking-tight text-gray-900 hover:opacity-80 transition-opacity">
+        <div class="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center text-sm font-bold">Q</div>
+        <span>QuizCraft</span>
+      </a>
+
+      <!-- Right Navigation Items -->
+      <div class="flex items-center gap-4">
+        <button id="nav-create-btn"
+          class="flex items-center gap-1.5 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          Create Quiz
+        </button>
+      </div>
+    </div>
+  </nav>
 
   <!-- HOME VIEW -->
-  <main id="home-view" class="w-full max-w-4xl">
+  <main id="home-view" class="w-full max-w-4xl p-6 my-auto">
     <div id="quiz-grid" class="flex flex-wrap justify-center items-center gap-6">
       <!-- Dynamic quiz cards injected here -->
 
-      <!-- Create New Quiz Card (Matches Wireframe) -->
-      <button id="btn-open-create" class="w-48 h-48 rounded-3xl border-2 border-dashed border-gray-400 hover:border-gray-600 hover:bg-gray-100/50 flex items-center justify-center transition-all duration-200">
+      <!-- Create New Quiz Card -->
+      <button id="btn-open-create"
+        class="w-48 h-48 rounded-3xl border-2 border-dashed border-gray-400 hover:border-gray-600 hover:bg-gray-100/50 flex items-center justify-center transition-all duration-200">
         <svg class="w-12 h-12 text-gray-400 stroke-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"></path>
         </svg>
@@ -26,26 +51,32 @@
   </main>
 
   <!-- CREATE / EDIT QUIZ MODAL -->
-  <section id="create-view" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+  <section id="create-view"
+    class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col p-6">
       <h2 id="modal-title" class="text-2xl font-bold mb-4">Create New Quiz</h2>
-      
+
       <div class="overflow-y-auto space-y-4 pr-2 flex-1">
         <div class="p-1">
           <label class="block text-sm font-semibold mb-1">Quiz Title</label>
-          <input type="text" id="quiz-title-input" placeholder="e.g., QUIZ A" class="w-full border border-gray-300 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-gray-400">
+          <input type="text" id="quiz-title-input" placeholder="e.g., QUIZ A"
+            class="w-full border border-gray-300 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-gray-400">
         </div>
 
         <div id="questions-container" class="space-y-6">
           <!-- Dynamic Question Cards -->
         </div>
 
-        <button id="btn-add-question" type="button" class="w-full py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-gray-400 font-medium">+ Add Question</button>
+        <button id="btn-add-question" type="button"
+          class="w-full py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-gray-400 font-medium">+
+          Add Question</button>
       </div>
 
       <div class="flex justify-end gap-3 pt-4 border-t border-gray-200 mt-4">
-        <button id="btn-cancel-create" class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-100">Cancel</button>
-        <button id="btn-save-quiz" class="px-5 py-2 bg-black text-white rounded-lg hover:bg-gray-800 font-medium">Save Quiz</button>
+        <button id="btn-cancel-create"
+          class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-100">Cancel</button>
+        <button id="btn-save-quiz" class="px-5 py-2 bg-black text-white rounded-lg hover:bg-gray-800 font-medium">Save
+          Quiz</button>
       </div>
     </div>
   </section>
@@ -58,8 +89,12 @@
         <span id="question-progress" class="text-xs text-gray-500"></span>
       </div>
       <!-- Time Limit Badge -->
-      <div id="timer-badge" class="flex items-center gap-1.5 px-3 py-1 bg-red-50 text-red-600 font-semibold border border-red-200 rounded-full text-sm">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <div id="timer-badge"
+        class="flex items-center gap-1.5 px-3 py-1 bg-red-50 text-red-600 font-semibold border border-red-200 rounded-full text-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
         <span id="timer-display">0s</span>
       </div>
     </div>
@@ -75,20 +110,25 @@
     </div>
 
     <div class="mt-6 flex justify-between items-center">
-      <button id="btn-exit-quiz" class="px-4 py-2 text-sm border rounded-lg text-gray-600 hover:bg-gray-100">Exit</button>
-      <button id="btn-next-question" class="px-5 py-2 bg-black text-white rounded-lg hover:bg-gray-800 font-medium">Next</button>
+      <button id="btn-exit-quiz"
+        class="px-4 py-2 text-sm border rounded-lg text-gray-600 hover:bg-gray-100">Exit</button>
+      <button id="btn-next-question"
+        class="px-5 py-2 bg-black text-white rounded-lg hover:bg-gray-800 font-medium">Next</button>
     </div>
   </section>
 
   <!-- RESULTS VIEW -->
-  <section id="results-view" class="hidden w-full max-w-md bg-white p-8 rounded-2xl border border-gray-200 text-center shadow-sm">
+  <section id="results-view"
+    class="hidden w-full max-w-md bg-white p-8 rounded-2xl border border-gray-200 text-center shadow-sm p-6 my-auto">
     <h2 class="text-2xl font-bold mb-2">Quiz Completed!</h2>
     <p class="text-gray-600 mb-6">Here is how you scored:</p>
     <div id="score-display" class="text-4xl font-extrabold text-black mb-6">0 / 0</div>
-    <button id="btn-back-home" class="px-6 py-2.5 bg-black text-white rounded-lg hover:bg-gray-800 font-medium">Back to Home</button>
+    <button id="btn-back-home" class="px-6 py-2.5 bg-black text-white rounded-lg hover:bg-gray-800 font-medium">Back to
+      Home</button>
   </section>
 
   <!-- Custom JavaScript -->
   <script src="app.js"></script>
 </body>
+
 </html>

@@ -50,6 +50,7 @@ const btnOpenCreate = document.getElementById('btn-open-create');
 const btnCancelCreate = document.getElementById('btn-cancel-create');
 const btnSaveQuiz = document.getElementById('btn-save-quiz');
 const btnAddQuestion = document.getElementById('btn-add-question');
+const navCreateBtn = document.getElementById("nav-create-btn");
 const questionsContainer = document.getElementById('questions-container');
 const quizTitleInput = document.getElementById('quiz-title-input');
 
@@ -495,6 +496,7 @@ function showResults() {
 // Event Listeners
 function attachEventListeners() {
   btnOpenCreate.onclick = openCreateModal;
+  navCreateBtn.onclick = openCreateModal;
   btnCancelCreate.onclick = () => createView.classList.add('hidden');
   btnAddQuestion.onclick = () => addQuestionField();
   btnSaveQuiz.onclick = saveQuiz;
