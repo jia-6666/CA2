@@ -1,0 +1,23 @@
+#home-view, #play-view, #results-view {
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Drag and Drop Zone styling */
+.drag-zone.dragover {
+  border-color: #000000;
+  background-color: #f3f4f6;
+}
+
+/* Custom scrollbar for create/edit modal */
+#create-view .overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+#create-view .overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 3px;
+}
+
+#create-view .overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
