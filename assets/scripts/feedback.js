@@ -194,10 +194,10 @@
   });
 
   // Search
-  document.getElementById("searchInput").addEventListener("input", (e) => {
-    searchTerm = e.target.value.trim().toLowerCase();
-    render(true);
-  });
+  // document.getElementById("searchInput").addEventListener("input", (e) => {
+  //   searchTerm = e.target.value.trim().toLowerCase();
+  //   render(true);
+  // });
 
   // Composer
   document.getElementById("composerForm").addEventListener("submit", (e) => {
