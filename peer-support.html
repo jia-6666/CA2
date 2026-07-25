@@ -1,23 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peer Support</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <script type="module" src="./assets/components/navbar.js"></script>
-  </head>
-  <body>
-    <nav-bar></nav-bar>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellness Check-In — School of Computing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles/peer-support.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#">
+    <span class="brand-mark">SoC</span>
+    <span class="brand-name">School&nbsp;of&nbsp;Computing</span>
+  </a>
+  <nav class="site-nav">
+    <a href="#" class="active">Home</a>
+    <a href="#">Resources</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+  <div class="header-actions">
+    <label class="search-box">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search resources…">
+    </label>
+    <button class="avatar-btn" aria-label="Profile">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== Wellness gauge ===== -->
+  <section class="gauge-card" id="gaugeCard" tabindex="-1">
+    <p class="eyebrow light">Daily Wellness Check-In</p>
+    <h2>How's your semester going right now?</h2>
+
+    <div class="gauge-row">
+      <span class="face" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M8 15c1-1.3 2.4-2 4-2s3 .7 4 2"/><circle cx="8.5" cy="9.5" r="1"/><circle cx="15.5" cy="9.5" r="1"/></svg>
+      </span>
+
+      <div class="slider-wrap">
+        <input type="range" id="moodSlider" min="0" max="100" value="55" aria-label="Wellness level">
+        <div class="slider-track"><div class="slider-fill" id="sliderFill"></div></div>
+      </div>
+
+      <span class="face" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M8 14c1 1.3 2.4 2 4 2s3-.7 4-2"/><circle cx="8.5" cy="9.5" r="1"/><circle cx="15.5" cy="9.5" r="1"/></svg>
+      </span>
+    </div>
+    <div class="gauge-labels">
+      <span>Burnt Out</span>
+      <span id="moodWord">Cruising</span>
+      <span>Thriving</span>
+    </div>
+
+    <div class="recommend-card" id="recommendCard">
+      <p class="recommend-title">Recommended for you</p>
+      <div class="recommend-items" id="recommendItems"></div>
+    </div>
+  </section>
+
+  <!-- ===== Study group map ===== -->
+  <section class="panel" id="mapSection">
+    <div class="panel-head">
+      <h2>Study Group Map</h2>
+      <button class="pin-btn" id="pinBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        Pin my study spot
+      </button>
+    </div>
+    <p class="panel-sub">Live spots students have checked into today. Click the map to drop your own pin.</p>
+
+    <div class="map-frame" id="mapFrame">
+      <img class="campus-map-img" src="assets/images/campus-map.jpg" alt="Campus map">
+      <div class="pins-layer" id="pinsLayer"></div>
+    </div>
+
+    <div class="pin-list" id="pinList"></div>
+  </section>
+
+  <!-- ===== Q&A ===== -->
+  <section class="panel" id="qaSection">
+    <div class="panel-head">
+      <h2>Urgent Blockers Q&amp;A</h2>
+      <div class="qa-sort">
+        <button class="chip active" data-qa-sort="top">Top</button>
+        <button class="chip" data-qa-sort="unanswered">Unanswered</button>
+        <button class="chip" data-qa-sort="new">Newest</button>
+      </div>
+    </div>
+
+    <form class="qa-form" id="qaForm">
+      <select id="qaSubject" aria-label="Subject">
+        <option>Python</option>
+        <option>Algorithms</option>
+        <option>Databases</option>
+        <option>Web Dev</option>
+        <option>Career</option>
+      </select>
+      <input type="text" id="qaInput" placeholder="Stuck on something? Ask the cohort…" maxlength="120" required>
+      <button type="submit">Post question</button>
+    </form>
+
+    <div class="qa-list" id="qaList"></div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="assets/styles/peer-support.js"></script>
+</body>
 </html>

@@ -1,23 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <script type="module" src="./assets/components/navbar.js"></script>
-  </head>
-  <body>
-    <nav-bar></nav-bar>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suggestion Board — School of Computing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles/feedback.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#">
+    <span class="brand-mark">SoC</span>
+    <span class="brand-name">School&nbsp;of&nbsp;Computing</span>
+  </a>
+  <nav class="site-nav">
+    <a href="#" class="active">Home</a>
+    <a href="#">Resources</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+  <div class="header-actions">
+    <label class="search-box">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search suggestions…" id="searchInput">
+    </label>
+    <button class="avatar-btn" aria-label="Profile">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow">Suggestion Board</p>
+    <h1>What should we fix next?</h1>
+    <p class="hero-sub">Post an idea, back the ones you're behind, and watch it climb the board. Anything that crosses 100 votes gets picked up by Student Council within the week.</p>
+    <div class="hero-stats">
+      <div class="stat"><strong id="statTotal">0</strong><span>ideas live</span></div>
+      <div class="stat"><strong id="statImplemented">0</strong><span>implemented</span></div>
+      <div class="stat"><strong id="statVotes">0</strong><span>votes cast</span></div>
+    </div>
+  </section>
+
+  <section class="controls">
+    <div class="filter-chips" id="filterChips">
+      <button class="chip active" data-filter="all">All ideas</button>
+      <button class="chip" data-filter="Facilities">Facilities</button>
+      <button class="chip" data-filter="Academics">Academics</button>
+      <button class="chip" data-filter="Wellness">Wellness</button>
+      <button class="chip" data-filter="Tech">Tech</button>
+      <button class="chip" data-filter="Events">Events</button>
+    </div>
+    <label class="sort-wrap">
+      <span>Sort by</span>
+      <select id="sortSelect">
+        <option value="top">Top Voted</option>
+        <option value="new">Newest</option>
+        <option value="discussed">Most Discussed</option>
+      </select>
+    </label>
+  </section>
+
+  <section class="board" id="board" aria-live="polite"></section>
+  <p class="empty-state" id="emptyState" hidden>No ideas here yet — be the first to post one below.</p>
+</main>
+
+<form class="composer" id="composerForm">
+  <select id="composerCategory" aria-label="Category">
+    <option>Facilities</option>
+    <option>Academics</option>
+    <option>Wellness</option>
+    <option>Tech</option>
+    <option>Events</option>
+  </select>
+  <input type="text" id="composerInput" placeholder="Share your thought…" maxlength="140" required>
+  <button type="submit">Post</button>
+</form>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="assets/styles/feedback.js"></script>
+</body>
 </html>
