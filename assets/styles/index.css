@@ -1,0 +1,96 @@
+body {
+    background-color: #eef0fb;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+  }
+ 
+  /* ===== Hero / Carousel ===== */
+  .hero-carousel {
+    background: linear-gradient(180deg, #4361ee 0%, #3f37c9 100%);
+    color: #fff;
+    min-height: 460px;
+  }
+ 
+  .hero-carousel .carousel-item {
+    min-height: 460px;
+  }
+ 
+  .hero-carousel .carousel-item-inner {
+    min-height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+ 
+  .hero-title {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-weight: 700;
+    font-size: 2.25rem;
+    z-index: 2;
+  }
+ 
+  .hero-placeholder-text {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+ 
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 5%;
+  }
+ 
+  /* ===== Speech bubble cards ===== */
+  .bubble-card {
+    background-color: #4361ee;
+    color: #fff;
+    border-radius: 20px;
+    padding: 1.5rem 1.75rem;
+    position: relative;
+  }
+ 
+  .bubble-card a {
+    color: #fff;
+    font-weight: 700;
+  }
+ 
+  .bubble-card h5 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+ 
+  /* speech bubble tail, pointing down-left */
+  .bubble-tail {
+    position: absolute;
+    bottom: -18px;
+    left: 40px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #4361ee;
+  }
+ 
+  .recent-visits-card {
+    background-color: #4361ee;
+    color: #fff;
+    border-radius: 20px;
+    padding: 1.5rem 1.75rem;
+    min-height: 320px;
+  }
+ 
+  .recent-visits-card h5 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+ 
+  .recent-visits-card ul {
+    list-style: disc;
+    padding-left: 1.2rem;
+  }
+ 
+  .recent-visits-card a {
+    color: #fff;
+    font-weight: 600;
+  }

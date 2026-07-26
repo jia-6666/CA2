@@ -7,11 +7,86 @@
     <style>@view-transition {navigation: auto;
     }</style>
     <link rel="stylesheet" href="assets/styles/global.css" />
+    <link rel="stylesheet" href="assets/styles/index.css">
     <script type="module" src="./assets/components/navbar.js"></script>
   </head>
   <body>
     <nav-bar></nav-bar>
-    <main></main>
+    <main>
+    <!-- Hero carousel section -->
+    <section class="hero-carousel position-relative">
+      <div class="hero-title">Introduction to SOC...</div>
+    
+      <div id="soc-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="carousel-item-inner">
+              <span class="hero-placeholder-text">Image of SOC</span>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-item-inner">
+              <span class="hero-placeholder-text">Image of SOC building</span>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-item-inner">
+              <span class="hero-placeholder-text">Image of student life</span>
+            </div>
+          </div>
+        </div>
+    
+        <button class="carousel-control-prev" type="button" data-bs-target="#soc-carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#soc-carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#soc-carousel" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#soc-carousel" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#soc-carousel" data-bs-slide-to="2"></button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Helper cards + recent visits -->
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="row g-4">
+            <div class="col-12">
+              <div class="bubble-card">
+                <h5>Not sure how to get to class?</h5>
+                <p class="mb-0">Click here &gt; <a href="navigation.html">Navigation</a></p>
+                <div class="bubble-tail"></div>
+              </div>
+            </div>
+    
+            <div class="col-12 mt-4">
+              <div class="bubble-card">
+                <h5>Feeling stress or lost?</h5>
+                <p class="mb-1">Click here to contact a counsellor</p>
+                <p class="mb-2">&gt; <a href="contact.html">Contact</a></p>
+                <p class="mb-1">Click here for peer support</p>
+                <p class="mb-0">&gt; <a href="peer-support.html">Peer support</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-lg-5">
+          <div class="recent-visits-card">
+            <h5>Recent visits</h5>
+            <ul>
+              <li><a href="student-tools.html">Pomodoro Timer</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
