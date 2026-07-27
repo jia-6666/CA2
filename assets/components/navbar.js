@@ -5,17 +5,7 @@ export class NavbarComponent extends HTMLElement {
     this.firstLayerLinks = [
       {
         href: "./",
-        title: "Home",
-        subLinks: [
-          {
-            href: "./peer-sharing.html",
-            title: "Peer Sharing"
-          },
-          {
-            href: "./peer-support.html",
-            title: "Peer Support"
-          }
-        ]
+        title: "Home"
       },
       {
         href: "./resource.html",
@@ -30,6 +20,16 @@ export class NavbarComponent extends HTMLElement {
       {
         href: "./about.html",
         title: "About",
+        subLinks: [
+          {
+            href: "./peer-sharing.html",
+            title: "Peer Sharing"
+          },
+          {
+            href: "./peer-support.html",
+            title: "Peer Support"
+          }
+        ]
       },
       {
         href: "./contact.html",
