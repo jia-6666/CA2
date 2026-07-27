@@ -4,39 +4,39 @@ export class NavbarComponent extends HTMLElement {
     this.currentPWD = window.location.pathname.replace("/", "");
     this.firstLayerLinks = [
       {
-        href: "/",
+        href: "./",
         title: "Home",
         subLinks: [
           {
-            href: "/peer-sharing.html",
+            href: "./peer-sharing.html",
             title: "Peer Sharing"
           },
           {
-            href: "/peer-support.html",
+            href: "./peer-support.html",
             title: "Peer Support"
           }
         ]
       },
       {
-        href: "resource.html",
+        href: "./resource.html",
         title: "Resource",
         subLinks: [
           {
-            href: "/study-tools.html",
+            href: "./study-tools.html",
             title: "Study Tools"
           }
         ]
       },
       {
-        href: "about.html",
+        href: "./about.html",
         title: "About",
       },
       {
-        href: "contact.html",
+        href: "./contact.html",
         title: "Contact",
         subLinks: [
           {
-            href: "/feedback.html",
+            href: "./feedback.html",
             title: "Feedback"
           }
         ]
@@ -132,7 +132,7 @@ export class NavbarComponent extends HTMLElement {
       <nav class="navbar navbar-expand-lg" id="mainNavbar">
         <div class="container-fluid">
           <!-- Brand / Logo (Stays Left) -->
-          <a class="navbar-brand fw-bold" href="${this.currentPWD == "" ? "javascript:void(0)" : "/"}">School Of Computing</a>
+          <a class="navbar-brand fw-bold" href="${this.currentPWD == "" ? "javascript:void(0)" : "./"}">School Of Computing</a>
           <!-- Mobile Toggler -->
           <button
             class="navbar-toggler border-0 shadow-none bg-white"
@@ -158,7 +158,7 @@ export class NavbarComponent extends HTMLElement {
                 </ul>
 
                 <!-- Mobile Profile Icon Button -->
-                <a href="${this.currentPWD.includes("login.html") ? "javascript:void(0)" : "/login.html"}" class="profile-btn text-white d-inline-flex align-items-center justify-content-center text-decoration-none">
+                <a href="${this.currentPWD.includes("login.html") ? "javascript:void(0)" : "./login.html"}" class="profile-btn text-white d-inline-flex align-items-center justify-content-center text-decoration-none">
                   <i class="bi bi-person fs-4"></i>
                 </a>
               </div>
@@ -204,7 +204,7 @@ export class NavbarComponent extends HTMLElement {
                 </div>
 
                 <!-- User Profile Icon Button -->
-                <a href="${this.currentPWD.includes("login.html") ? "javascript:void(0)" : "/login.html"}" class="profile-btn text-white d-inline-flex align-items-center justify-content-center text-decoration-none">
+                <a href="${this.currentPWD.includes("login.html") ? "javascript:void(0)" : "./login.html"}" class="profile-btn text-white d-inline-flex align-items-center justify-content-center text-decoration-none">
                   <i class="bi bi-person fs-4"></i>
                 </a>
 
