@@ -1,0 +1,44 @@
+/* Custom Navbar Styling */
+.custom-navbar {
+  background-color: #3b82f6;
+  border-radius: 50px;
+}
+
+/* Primary Accent Color */
+.bg-primary-custom {
+  background-color: #2563eb;
+}
+
+/* OTP Input Styling */
+.otp-input {
+  width: 45px;
+  aspect-ratio: 1;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  transition: all 0.2s ease-in-out;
+}
+
+.otp-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25);
+  outline: none;
+}
+
+/* Card Styling */
+.auth-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 50vw;
+}
+
+@media (max-width: 991px) {
+    .auth-card{
+        width: 90vw;
+        aspect-ratio: 1;
+    }
+}

@@ -1,15 +1,117 @@
-:root{
-    --primary-color: oklch(0.5314 0.2439 267.55);
-    --bg-color: oklch(0.9688 0.0148 277.85);
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+:root {
+  --primary-color: oklch(0.5106 0.2052 271.46);
+  --bg-color: oklch(0.9688 0.0148 277.85);
 }
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", sans-serif;
 }
 
-.bg-primary{
-    background-color: var(--primary-color);
-    color: white;
+body {
+  background-color: var(--bg-color);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Navbar Bootstrap Overrides */
+.navbar {
+  --bs-navbar-brand-color: var(--bg-color);
+  --bs-navbar-color: var(--bg-color);
+  --bs-navbar-active-color: var(--bg-color);
+  --bs-navbar-brand-hover-color: var(--bg-color);
+  --bs-navbar-hover-color: var(--bg-color);
+  background-color: var(--primary-color);
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-radius: 0;
+  padding: 0.7rem 1rem;
+  transition: all 0.3s ease-in-out;
+
+  animation: stickyNav linear forwards;
+  animation-timeline: view();
+  animation-range-start: 100vh;
+  animation-range-end: 110vh;
+
+  margin-bottom: 2rem;
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-hover-bg: oklch(from var(--primary-color) 0.65 c h);
+  background-color: oklch(from var(--primary-color) 0.6 c h);
+}
+
+/* Active Link Underline Effect */
+.navbar-nav .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* User Profile Icon Styling */
+.profile-btn {
+  background-color: #fff;
+  color: #333 !important;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+@media (min-width: 992px) {
+  .dropdown-hover:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar {
+    animation: none;
+  }
+}
+
+@keyframes stickyNav {
+  100% {
+    position: sticky;
+    width: 95vw;
+    top: 1rem;
+    left: 2rem;
+    right: 2rem;
+    border-radius: 50px;
+    padding: 0.4rem 1.5rem;
+  }
+}
+
+::view-transition-group(main-content) {
+  animation-duration: 1s;
+}
+
+::view-transition-old(main-content) {
+  animation-name: slide-out;
+}
+
+::view-transition-new(main-content) {
+  animation-name: slide-in;
+}
+
+@keyframes slide-out {
+  to {
+    translate: -100vw;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    translate: 100vw;
+  }
+}
+
+main {
+  view-transition-name: main-content;
 }
