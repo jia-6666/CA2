@@ -66,27 +66,27 @@
       <p class="empty-state" id="emptyState" hidden>
         No ideas here yet — be the first to post one below.
       </p>
+
+      <form class="composer" id="composerForm">
+        <select id="composerCategory" aria-label="Category">
+          <option>Facilities</option>
+          <option>Academics</option>
+          <option>Wellness</option>
+          <option>Tech</option>
+          <option>Events</option>
+        </select>
+        <input
+          type="text"
+          id="composerInput"
+          placeholder="Share your thought…"
+          maxlength="140"
+          required
+        />
+        <button type="submit">Post</button>
+      </form>
+
+      <div class="toast" id="toast" role="status"></div>
     </main>
-
-    <form class="composer" id="composerForm">
-      <select id="composerCategory" aria-label="Category">
-        <option>Facilities</option>
-        <option>Academics</option>
-        <option>Wellness</option>
-        <option>Tech</option>
-        <option>Events</option>
-      </select>
-      <input
-        type="text"
-        id="composerInput"
-        placeholder="Share your thought…"
-        maxlength="140"
-        required
-      />
-      <button type="submit">Post</button>
-    </form>
-
-    <div class="toast" id="toast" role="status"></div>
 
     <script src="assets/scripts/feedback.js"></script>
   </body>

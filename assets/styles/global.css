@@ -46,7 +46,7 @@ body {
   animation-range-start: 100vh;
   animation-range-end: 110vh;
 
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .dropdown-menu {
