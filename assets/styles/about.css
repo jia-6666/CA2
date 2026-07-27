@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* MAIN */
 
 .container {
@@ -11,68 +10,10 @@
     grid-template-columns: 2.3fr 1fr;
 
     gap: 18px;
-=======
-html, body{
-    margin:0;
-    padding:0;
-    min-height:100%;
-    background:#0b4f7d;
-}
-
-.page{
-    top:0px;
-    padding:100px 30px 30px 30px;
-    width:min(95%, 1400px);
-    max-width:1400px;
-    min-height:calc(100vh - 70px);
-    margin:25px auto;
-    margin-top:0px;
-    background:#0b4f7d;
-    border-radius:12px;
-    position:relative;
-    padding:30px;
-    overflow:hidden;
-    z-index:2;
-    box-sizing:border-box;
-}
-
-body{
-    background:#0b4f7d;
-    padding-top:0px;
-    margin-top:0px;
-}
-
-.page::before{
-    content:"";
-    position:absolute;
-    top:0px;
-    left:15px;
-    right:15px;
-    bottom:15px;
-    border-radius:10px;
-    pointer-events:none;
-    background-color: #ffffff;z-index:-1;
-}
-
-
-
-/* MAIN */
-
-.container{
-    margin:25px; /* Top Right Bottom Left */
-    margin-top:70px;
-
-    display:grid;
-
-    grid-template-columns:2.3fr 1fr;
-
-    gap:18px;
->>>>>>> cbbbbea99856fe616e631e662ef2c181174d6106
 }
 
 /* CARDS */
 
-<<<<<<< HEAD
 .card {
 
     background: #3553ff;
@@ -96,35 +37,10 @@ body{
 
     text-align: center;
     margin-bottom: 20px;
-=======
-.card{
-
-    background:#3553ff;
-
-    color:white;
-
-    border-radius:22px;
-
-    padding:25px;
-
-    box-shadow:0 10px 20px rgba(0,0,0,.1);
-}
-
-.card h1{
-
-    text-align:center;
-    margin-bottom:20px;
-}
-.card h2{
-
-    text-align:center;
-    margin-bottom:20px;
->>>>>>> cbbbbea99856fe616e631e662ef2c181174d6106
 }
 
 /* Heights */
 
-<<<<<<< HEAD
 .goals {
     height: 290px;
 }
@@ -144,32 +60,10 @@ body{
     min-height: 830px;
 
     overflow: auto;
-=======
-.goals{
-    height:290px;
-}
-
-.mvp{
-    height:230px;
-}
-
-.value{
-    height:290px;
-}
-
-.timeline{
-
-    grid-row:span 3;
-
-    min-height:830px;
-
-    overflow:auto;
->>>>>>> cbbbbea99856fe616e631e662ef2c181174d6106
 }
 
 /* Timeline */
 
-<<<<<<< HEAD
 .timeline-content {
 
     margin-top: 20px;
@@ -194,54 +88,19 @@ body{
 
 .event h3 {
     margin-bottom: 8px;
-=======
-.timeline-content{
-
-    margin-top:20px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-}
-
-.event{
-
-    padding:15px;
-
-    border-left:4px solid white;
-
-    background:rgba(255,255,255,.08);
-
-    border-radius:10px;
-}
-
-.event h3{
-    margin-bottom:8px;
->>>>>>> cbbbbea99856fe616e631e662ef2c181174d6106
 }
 
 /* Responsive */
 
-<<<<<<< HEAD
 @media(max-width:900px) {
 
     .container {
 
         grid-template-columns: 1fr;
-=======
-@media(max-width:900px){
-
-    .container{
-
-        grid-template-columns:1fr;
->>>>>>> cbbbbea99856fe616e631e662ef2c181174d6106
     }
 }
 
 
-<<<<<<< HEAD
 .timeline h2 {
     font-size: 28px;
 }
@@ -313,79 +172,3 @@ body{
     font-size: 15px;
     margin-left: 25px;
 }
-=======
-    .timeline h2{
-    font-size:28px;
-}
-
-.timeline-item{
-    display:grid;
-    grid-template-columns:70px 1fr;
-    position:relative;
-    padding-top:0px;
-    margin-top:0px;
-    padding:65px 0;
-}
-
-.timeline-item::before{
-    content:"";
-    position:absolute;
-    left:80px;
-    top:70px;
-    bottom:-75px;
-    width:2px;
-    background:white;
-}
-
-.timeline-item::after{
-    content:"";
-    position:absolute;
-    left:76px;
-    top:70px;
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background:white;
-}
-.timeline-item-last{
-    display:grid;
-    grid-template-columns:70px 1fr;
-    position:relative;
-    padding:65px 0;
-}
-
-.timeline-item-last::before{
-    content:"";
-    position:absolute;
-    left:80px;
-    top:70px;
-    width:2px;
-    background:white;
-}
-.timeline-item-last::after{
-    content:"";
-    position:absolute;
-    left:76px;
-    top:71px;
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background:white;
-}
-
-.timeline span{
-    font-weight:bold;
-    font-size:18px;
-}
-
-.timeline p{
-    text-align:left;
-    font-size:15px;
-    margin-left:25px;
-}
-    *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    }
->>>>>>> cbbbbea99856fe616e631e662ef2c181174d6106
