@@ -1,4 +1,4 @@
-export class NavbarComponent extends HTMLElement {
+export class Navbar extends HTMLElement {
   constructor() {
     super();
     this.currentPWD = window.location.pathname.replace("/", "");
@@ -217,4 +217,4 @@ export class NavbarComponent extends HTMLElement {
   }
 }
 
-customElements.define("nav-bar", NavbarComponent);
+customElements.define("nav-bar", Navbar);
