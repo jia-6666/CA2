@@ -50,6 +50,8 @@ main {
   animation-range-start: 100vh;
   animation-range-end: 110vh;
 
+  user-select: none;
+
   /* margin-bottom: 2rem; */
 }
 
@@ -67,8 +69,8 @@ main {
 .profile-btn {
   background-color: #fff;
   color: #333 !important;
-  width: 36px;
-  height: 36px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
 }
 
