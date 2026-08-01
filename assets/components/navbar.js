@@ -32,6 +32,10 @@ export class Navbar extends HTMLElement {
           {
             href: "./peer-support.html",
             title: "Peer Support"
+          },
+          {
+            href: "./cca.html",
+            title: "CCA"
           }
         ]
       },
