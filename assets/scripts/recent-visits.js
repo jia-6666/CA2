@@ -11,7 +11,7 @@
     'peer-sharing.html': 'Peer Sharing',
     'peer-support.html': 'Peer Support',
     'resource.html': 'Resources',
-    'study-tools.html': 'Student Tools'
+    'study-tools.html': 'Study Tools'
   };
 
   const STORAGE_KEY = 'recentVisits';
@@ -65,9 +65,64 @@
     });
   }
 
+  // --- Map search history (used on navigation.html) ---
+  const MAP_RECENT_KEY = 'mapRecentSearches';
+  const MAP_RECENT_MAX = 6;
+
+  function getMapRecent() {
+    try {
+      return JSON.parse(localStorage.getItem(MAP_RECENT_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
+
+  function renderMapRecent() {
+    const row = document.getElementById('recentRow');
+    const chips = document.getElementById('recentChips');
+    if (!row || !chips) return; // not on navigation.html
+
+    const recent = getMapRecent();
+
+    if (recent.length === 0) {
+      row.classList.add('d-none');
+      return;
+    }
+
+    row.classList.remove('d-none');
+    chips.innerHTML = recent
+      .map(r => `<button type="button" class="recent-chip" data-id="${r.id}">${r.label}</button>`)
+      .join('');
+  }
+
+  function saveMapRecent(id, label) {
+    let recent = getMapRecent().filter(r => r.id !== id);
+    recent.unshift({ id, label });
+    localStorage.setItem(MAP_RECENT_KEY, JSON.stringify(recent.slice(0, MAP_RECENT_MAX)));
+    renderMapRecent();
+  }
+
+  function setupMapRecentClear() {
+    const clearBtn = document.getElementById('recentClear');
+    if (!clearBtn) return; // not on navigation.html
+
+    clearBtn.addEventListener('click', () => {
+      localStorage.removeItem(MAP_RECENT_KEY);
+      renderMapRecent();
+    });
+  }
+
+  // Exposed so navigation.html's map-search script can record a selection
+  window.mapSearchHistory = {
+    save: saveMapRecent,
+    render: renderMapRecent
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
     logVisit();
     renderVisits();
     setupClearButton();
+    renderMapRecent();
+    setupMapRecentClear();
   });
 })();

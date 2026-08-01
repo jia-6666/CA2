@@ -14,6 +14,10 @@ export class Navbar extends HTMLElement {
           {
             href: "./study-tools.html",
             title: "Study Tools"
+          },
+          {
+            href: "./navigation.html",
+            title: "Navigation"
           }
         ]
       },

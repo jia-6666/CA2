@@ -133,3 +133,16 @@ body {
 .clear-visits-link:hover {
   color: oklch(0.8 0.1 271.46); /* same hue as --primary-color, much lighter */
 }
+
+.hero-carousel .carousel-control-prev-icon,
+.hero-carousel .carousel-control-next-icon {
+  background-color: rgba(67, 97, 238, 0.6);
+  border-radius: 50%;
+  padding: 1.25rem;
+  background-size: 50%; /* keeps the arrow glyph from being oversized inside the circle */
+}
+
+.hero-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
+.hero-carousel .carousel-control-next:hover .carousel-control-next-icon {
+  background-color: rgba(67, 97, 238, 0.6); /* slightly darker on hover for feedback */
+}
