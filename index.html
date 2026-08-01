@@ -21,17 +21,17 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="carousel-item-inner">
-              <span class="hero-placeholder-text">Image of SOC</span>
+              <img src="assets/images/Intro1.jpg" alt="Image of SOC">
             </div>
           </div>
           <div class="carousel-item">
             <div class="carousel-item-inner">
-              <span class="hero-placeholder-text">Image of SOC building</span>
+              <img src="assets/images/Intro2.jpg" alt="Image of SOC">
             </div>
           </div>
           <div class="carousel-item">
             <div class="carousel-item-inner">
-              <span class="hero-placeholder-text">Image of student life</span>
+              <img src="assets/images/Intro3.jpg" alt="Image of SOC">
             </div>
           </div>
         </div>
@@ -65,23 +65,25 @@
             </div>
     
             <div class="col-12 mt-4">
-              <div class="bubble-card">
-                <h5>Feeling stress or lost?</h5>
-                <p class="mb-1">Click here to contact a counsellor</p>
-                <p class="mb-2">&gt; <a href="contact.html">Contact</a></p>
-                <p class="mb-1">Click here for peer support</p>
-                <p class="mb-0">&gt; <a href="peer-support.html">Peer support</a></p>
-              </div>
+                <div class="bubble-card">
+                  <h5>Feeling stress or lost?</h5>
+                  <p class="mb-1">Click here to contact a counsellor</p>
+                  <p class="mb-2">&gt; <a href="contact.html">Contact</a></p>
+                  <p class="mb-1">Click here for peer support</p>
+                  <p class="mb-0">&gt; <a href="peer-support.html">Peer support</a></p>
+              </div> 
             </div>
           </div>
         </div>
     
         <div class="col-lg-5">
-          <div class="recent-visits-card">
+          <div class="recent-visits-card" >
             <h5>Recent visits</h5>
-            <ul>
-              <li><a href="student-tools.html">Pomodoro Timer</a></li>
-            </ul>
+              <ul id="recent-visits-list">
+                <li>No recent visits yet</li>
+              </ul>
+              <a href="#" id="clear-visits-btn" class="clear-visits-link">Clear recent visits</a>
+            </div>
           </div>
         </div>
       </div>
@@ -92,5 +94,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <script src="assets/scripts/recent-visits.js"></script>
   </body>
 </html>

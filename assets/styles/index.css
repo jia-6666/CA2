@@ -1,96 +1,135 @@
 body {
-    background-color: #eef0fb;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-  }
- 
-  /* ===== Hero / Carousel ===== */
-  .hero-carousel {
-    background: linear-gradient(180deg, #4361ee 0%, #3f37c9 100%);
-    color: #fff;
-    min-height: 460px;
-  }
- 
-  .hero-carousel .carousel-item {
-    min-height: 460px;
-  }
- 
-  .hero-carousel .carousel-item-inner {
-    min-height: 460px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
- 
-  .hero-title {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    font-weight: 700;
-    font-size: 2.25rem;
-    z-index: 2;
-  }
- 
-  .hero-placeholder-text {
-    font-weight: 700;
-    font-size: 2.5rem;
-    color: rgba(255, 255, 255, 0.6);
-  }
- 
-  .carousel-control-prev,
-  .carousel-control-next {
-    width: 5%;
-  }
- 
-  /* ===== Speech bubble cards ===== */
-  .bubble-card {
-    background-color: #4361ee;
-    color: #fff;
-    border-radius: 20px;
-    padding: 1.5rem 1.75rem;
-    position: relative;
-  }
- 
-  .bubble-card a {
-    color: #fff;
-    font-weight: 700;
-  }
- 
-  .bubble-card h5 {
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
- 
-  /* speech bubble tail, pointing down-left */
-  .bubble-tail {
-    position: absolute;
-    bottom: -18px;
-    left: 40px;
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid #4361ee;
-  }
- 
-  .recent-visits-card {
-    background-color: #4361ee;
-    color: #fff;
-    border-radius: 20px;
-    padding: 1.5rem 1.75rem;
-    min-height: 320px;
-  }
- 
-  .recent-visits-card h5 {
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
- 
-  .recent-visits-card ul {
-    list-style: disc;
-    padding-left: 1.2rem;
-  }
- 
-  .recent-visits-card a {
-    color: #fff;
-    font-weight: 600;
-  }
+  background-color: #eef0fb;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ===== Hero / Carousel ===== */
+.hero-carousel {
+  background: linear-gradient(180deg, #4361ee 0%, #3f37c9 100%);
+  color: #fff;
+  padding-top: 5rem;   /* blue space above the image, for the title */
+  padding-bottom: 0;   /* no blue below the image */
+  padding-left: 0;
+  padding-right: 0;
+  min-height: 520px;
+  position: relative;
+}
+
+.hero-carousel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+  pointer-events: none; /* lets clicks pass through to the carousel controls underneath */
+}
+
+.hero-carousel #soc-carousel {
+  max-width: 100%;   /* full width, no side insets */
+  margin: 0;          /* no centering needed anymore */
+  border-radius: 0;   /* remove rounded corners since it's edge-to-edge */
+}
+
+.hero-carousel .carousel-item {
+  min-height: 460px;
+}
+
+.hero-carousel .carousel-item-inner {
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-carousel .carousel-item-inner img {
+  width: 100%;
+  height: 460px;      /* match your min-height */
+  object-fit: cover;  /* fills the box, cropping instead of distorting */
+  border-radius: 0;   /* optional, remove if you want rounded corners */
+}
+
+.hero-title {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  font-weight: 700;
+  font-size: 2.25rem;
+  z-index: 2; /* sits above the overlay */
+  color: #fff;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+
+/* ===== Speech bubble cards ===== */
+.bubble-card {
+  background-color: #4361ee;
+  color: #fff;
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  position: relative;
+}
+
+.bubble-card a {
+  color: #fff;
+  font-weight: 700;
+}
+
+.bubble-card h5 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* speech bubble tail, pointing down-left */
+.bubble-tail {
+  position: absolute;
+  bottom: -18px;
+  left: 40px;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #4361ee;
+}
+
+.recent-visits-card {
+  background-color: #4361ee;
+  color: #fff;
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.recent-visits-card h5 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+
+.recent-visits-card ul {
+  flex-grow: 1; /* pushes the clear button toward the bottom regardless of list length */
+}
+
+.recent-visits-card a {
+  color: #fff;
+  font-weight: 600;
+}
+
+.clear-visits-link {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  align-self: flex-start;
+  display: none; /* JS shows this only when there's something to clear */
+}
+
+.clear-visits-link:hover {
+  color: oklch(0.8 0.1 271.46); /* same hue as --primary-color, much lighter */
+}
