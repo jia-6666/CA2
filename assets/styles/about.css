@@ -24,15 +24,10 @@
         var(--blue-600),
         var(--blue-700)
     );
-
     color: white;
-
     border-radius: 25px;
-
     padding: 30px;
-
     box-shadow: 0 15px 35px var(--shadow);
-
     transition: all 0.3s ease
 }
 
