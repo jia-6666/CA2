@@ -1,6 +1,8 @@
 /* MAIN */
+    
+.container1 {
+    justify-content: center;
 
-.container {
     margin: 25px;
     /* Top Right Bottom Left */
     margin-top: 70px;
@@ -42,15 +44,15 @@
 /* Heights */
 
 .goals {
-    height: 290px;
+    min-height: 290px;
 }
 
 .mvp {
-    height: 230px;
+    min-height: 230px;
 }
 
 .value {
-    height: 290px;
+    min-height: 290px;
 }
 
 .timeline {
@@ -91,14 +93,6 @@
 }
 
 /* Responsive */
-
-@media(max-width:900px) {
-
-    .container {
-
-        grid-template-columns: 1fr;
-    }
-}
 
 
 .timeline h2 {
