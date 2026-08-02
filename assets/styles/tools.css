@@ -1,151 +1,44 @@
-/* Custom Headings */
-.section-title {
-  color: var(--primary-color);
-  font-weight: 800;
-  font-size: 2rem;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.25rem !important;
-  text-decoration: none; /* Removed heavy underline for a cleaner feel */
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+:root {
+  --primary-blue: #3b82f6;
+  --bg-subtle: #f1f5f9;
 }
 
-/* Tool Main Cards */
-.tool-card {
-  background-color: var(--primary-color);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 24px;
-  box-shadow:
-    0 10px 30px -5px rgba(0, 0, 0, 0.05),
-    0 4px 12px -2px rgba(0, 0, 0, 0.02);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+body {
+  background-color: var(--bg-subtle);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
 }
 
-/* Timer Specific Styling */
-.timer-display {
-  font-size: 4rem;
-  font-weight: 500;
-  color: #ffffff;
-  min-width: 180px;
-  text-align: center;
+.dashboard-wrapper {
+  background-color: #2563eb; /* Outer main container frame blue accent */
+  padding: 10px;
 }
 
-.btn-timer-control {
-  background-color: rgba(0, 0, 0, 0.25) !important;
-  color: #ffffff !important;
-  border: none;
-  width: 50px;
-  height: 50px;
-  font-size: 1.8rem;
-  line-height: 1;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+.dashboard-card {
+  border-radius: 12px;
+  max-height: calc(100vh - 130px);
 }
 
-.btn-timer-control:hover {
-  background-color: rgba(0, 0, 0, 0.38) !important;
-  color: #ffffff !important;
+#plantCanvas {
+  width: 100%;
+  height: 100%;
+  max-height: 380px;
+  object-fit: contain;
 }
 
-.btn-start {
-  background-color: rgba(0, 0, 0, 0.25) !important;
-  color: #ffffff !important;
-  border: none;
-  border-radius: 25px;
-  transition: background-color 0.2s ease;
-}
-
-.btn-start:hover {
-  background-color: rgba(0, 0, 0, 0.4) !important;
-  color: #ffffff !important;
-}
-
-/* Custom Checkbox / Switch Styling */
-.custom-switch .form-check-input {
-  width: 3em;
-  height: 1.5em;
-  background-color: rgba(0, 0, 0, 0.3);
-  border: none;
-  cursor: pointer;
-}
-
-.custom-switch .form-check-input:checked {
-  background-color: #3b82f6;
-}
-
-.task-list .form-check-input {
-  width: 1.3em;
-  height: 1.3em;
-  background-color: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-}
-
-.task-list .form-check-input:checked {
-  background-color: #3b82f6;
-  border-color: #3b82f6;
-}
-
-.form-check-input:checked + .text-decoration-line-through-checked {
-  text-decoration: line-through;
-  opacity: 0.7;
-}
-
-/* Flash Cards */
-.flash-card {
-  background-color: var(--primary-color);
-  border-radius: 24px;
-  min-height: 220px;
-  color: #ffffff;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  cursor: pointer;
-}
-
-.flash-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* GPA inputs & selects */
-.custom-select {
-  background-color: rgba(0, 0, 0, 0.25);
-  color: #ffffff;
-  border: none;
-  border-radius: 20px;
-  padding-left: 1.25rem;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-}
-
-.custom-select option {
-  background-color: var(--primary-color);
-  color: #ffffff;
-}
-
-.grade-input {
-  background-color: rgba(0, 0, 0, 0.25);
-  border: none;
-  color: #ffffff;
+.spotify-bar {
   border-radius: 8px;
+  background-color: #121212 !important;
 }
 
-.grade-input:focus,
-.custom-select:focus {
-  background-color: rgba(0, 0, 0, 0.35);
-  color: #ffffff;
-  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+/* Custom Scrollbars for Lists */
+::-webkit-scrollbar {
+  width: 5px;
 }
-
-/* Divider for side panel on desktop */
-@media (min-width: 768px) {
-  .border-end-md {
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-  }
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
