@@ -1,0 +1,83 @@
+:root {
+    --blue-600: #4763ffe7;
+    --blue-700:#3553ff; 
+    --background: #f3f3fb;
+    --radius: 35px;
+}   
+.heading {
+    padding-top:50px;
+    color:#253b8d;
+    width: 500px;
+    margin: auto;
+    text-align: center;
+    font-size: 45px;
+    font-weight: bolder;
+}
+.heading h1 {
+    position: relative;
+    display: inline-block;
+}
+.heading h1::after {
+    content: "";
+    position: absolute;
+
+    width: 150%;
+    height: 3px;
+
+    left: -25%;
+    bottom: -8px;
+
+    background: black;
+}
+
+.heading p {
+    font-size: 20px;
+}
+.container {
+    width: 67%;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 300px 300px;
+
+    gap: 18px;
+}
+
+.brick {
+    background: linear-gradient(
+        135deg,
+        var(--blue-600),
+        var(--blue-700)
+    );
+
+    border-radius: var(--radius);
+
+    color: white;
+    padding: 30px;
+
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.brick h2 {
+    font-size: 45px;
+    font-weight: 300;
+}
+
+/* Left block */
+
+.brick1 {
+    grid-row: 1 / span 2;
+}
+
+/* Top-right block */
+
+.brick2 {
+    grid-column: 2;
+}
+
+/* Bottom-right block */
+
+.brick3 {
+    grid-column: 2;
+}
