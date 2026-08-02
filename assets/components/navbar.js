@@ -12,8 +12,8 @@ export class Navbar extends HTMLElement {
         title: "Resource",
         subLinks: [
           {
-            href: "./study-tools.html",
-            title: "Study Tools"
+            href: "./study-dashboard.html",
+            title: "Study Dashboard"
           },
           {
             href: "./navigation.html",
