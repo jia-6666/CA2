@@ -1,0 +1,259 @@
+/* ---------------------------------------------------------------------- */
+/* CCA directory page — layout sits on top of the shared global.css / navbar */
+/* ---------------------------------------------------------------------- */
+
+:root {
+  --cca-blue-dark: #2d3fd6;
+  --cca-blue: #3c56e6;
+  --cca-blue-light: #6f86f5;
+  --cca-page-bg: #eef0fc;
+}
+
+body {
+  background-color: var(--cca-page-bg);
+}
+
+.cca-page {
+  max-width: 1200px;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+/* Search + filter panel ---------------------------------------------- */
+
+.cca-search-panel {
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 12px 30px -12px rgba(45, 63, 214, 0.45);
+}
+
+.cca-search-bar {
+  background-color: var(--cca-blue-dark);
+  padding: 1rem 1.5rem;
+}
+
+.cca-search-bar input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  width: 100%;
+  outline: none;
+}
+
+.cca-search-bar input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.cca-search-bar .bi-search {
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.cca-filters {
+  background-color: var(--cca-blue);
+  padding: 1.25rem 1.5rem 1.5rem;
+  color: #fff;
+}
+
+.cca-filters-title {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.cca-filter-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 1.5rem 0.5rem 0;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.cca-filter-option input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cca-filter-option input[type="checkbox"]:checked {
+  background-color: var(--cca-blue-dark);
+  box-shadow: inset 0 0 0 3px #fff;
+}
+
+.cca-filter-option input[type="checkbox"]:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Results meta ---------------------------------------------------------- */
+
+.cca-results-meta {
+  margin: 1.5rem 0 1rem;
+  color: #4a4f7a;
+  font-size: 0.95rem;
+}
+
+/* Cards ------------------------------------------------------------------ */
+
+.cca-card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--cca-blue-light) 0%, var(--cca-blue-dark) 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px -10px rgba(45, 63, 214, 0.5);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cca-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -12px rgba(45, 63, 214, 0.6);
+}
+
+.cca-card-media {
+  flex: 1 1 auto;
+  min-height: 160px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.cca-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cca-card-media-fallback {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.cca-card-media-fallback .bi-image {
+  font-size: 2rem;
+}
+
+.cca-card-media-fallback span {
+  font-size: 1.1rem;
+}
+
+/* Shown automatically via the <img>'s onerror handler when a photo is missing */
+.cca-card-media.cca-media-fallback img {
+  display: none;
+}
+
+.cca-card-media.cca-media-fallback .cca-card-media-fallback {
+  display: flex;
+}
+
+.cca-card-body {
+  padding: 1rem 1.15rem 0.5rem;
+  flex: 1 1 auto;
+}
+
+.cca-card-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.cca-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  line-height: 1.25;
+}
+
+.cca-card-desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0;
+}
+
+.cca-card-footer {
+  padding: 0 1.15rem 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.cca-contact-icons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.cca-contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 0.95rem;
+  transition: background-color 0.15s ease;
+}
+
+.cca-contact-icon:hover,
+.cca-contact-icon:focus-visible {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.cca-card-signup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.16);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.cca-card-signup:hover,
+.cca-card-signup:focus-visible {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+/* Empty state -------------------------------------------------------- */
+
+#ccaEmptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #4a4f7a;
+}
