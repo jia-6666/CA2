@@ -7,24 +7,30 @@ body {
 .hero-carousel {
   background: linear-gradient(180deg, #4361ee 0%, #3f37c9 100%);
   color: #fff;
-  padding-top: 5rem;   /* blue space above the image, for the title */
-  padding-bottom: 0;   /* no blue below the image */
-  padding-left: 0;
-  padding-right: 0;
-  min-height: 520px;
+  padding: 0;        /* was padding-top: 5rem — removes the blue strip entirely */
+  min-height: 460px;  /* adjust back down since there's no extra padding anymore */
   position: relative;
 }
-
 .hero-carousel::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 220px;
+  height: 160px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
   z-index: 1;
-  pointer-events: none; /* lets clicks pass through to the carousel controls underneath */
+  pointer-events: none;
+}
+
+.hero-title {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  font-weight: 700;
+  font-size: 2.25rem;
+  z-index: 2;
+  color: #fff;
 }
 
 .hero-carousel #soc-carousel {
@@ -46,19 +52,10 @@ body {
 
 .hero-carousel .carousel-item-inner img {
   width: 100%;
-  height: 460px;      /* match your min-height */
-  object-fit: cover;  /* fills the box, cropping instead of distorting */
-  border-radius: 0;   /* optional, remove if you want rounded corners */
-}
-
-.hero-title {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  font-weight: 700;
-  font-size: 2.25rem;
-  z-index: 2; /* sits above the overlay */
-  color: #fff;
+  aspect-ratio: 16 / 9;
+  max-height: 550px;   /* caps growth on wide desktop screens */
+  object-fit: cover;
+  border-radius: 0;
 }
 
 .carousel-control-prev,
@@ -145,4 +142,16 @@ body {
 .hero-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
 .hero-carousel .carousel-control-next:hover .carousel-control-next-icon {
   background-color: rgba(67, 97, 238, 0.6); /* slightly darker on hover for feedback */
+}
+
+@media (max-width: 576px) {
+  .hero-carousel .carousel-item-inner img {
+    aspect-ratio: 4 / 3; /* taller ratio on small screens, less aggressive cropping */
+  }
+
+  .hero-title {
+    font-size: 1.5rem; /* also worth shrinking the title text on mobile, since 2.25rem is large relative to a phone screen */
+    top: 1rem;
+    left: 1rem;
+  }
 }
