@@ -7,11 +7,6 @@
     showToast._t = setTimeout(() => toast.classList.remove("show"), 2200);
   }
 
-  /* ================= Storage helpers =================
-     Wrapped in try/catch: some sandboxed previews block localStorage,
-     in which case the page still works, it just won't remember state
-     between refreshes. On your live site (opened normally in a browser)
-     this persists as expected. */
   function loadJSON(key, fallback) {
     try {
       const raw = localStorage.getItem(key);
@@ -21,10 +16,26 @@
   function saveJSON(key, value) {
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage unavailable */ }
   }
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
 
   const KEY_MOOD = "soc_wellness_mood_v1";
   const KEY_PINS = "soc_wellness_pins_v1";
-  const KEY_QA = "soc_wellness_qa_v1";
+  const KEY_QA = "soc_wellness_qa_v2";
+
+  /* ================= Mobile nav ================= */
+  const navToggle = document.getElementById("navToggle");
+  const siteNav = document.getElementById("siteNav");
+  if (navToggle && siteNav) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = siteNav.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+      navToggle.innerHTML = isOpen ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+    });
+  }
 
   /* ================= Mood gauge ================= */
   const slider = document.getElementById("moodSlider");
@@ -112,20 +123,16 @@
   let pins = loadJSON(KEY_PINS, defaultPins);
   let placing = false;
 
-  const PIN_BTN_DEFAULT = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Pin my study spot`;
-
-  function pinIcon() {
-    return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>`;
-  }
+  const PIN_BTN_DEFAULT = `<i class="bi bi-geo-alt"></i> Pin my study spot`;
 
   function renderPins() {
     pinsLayer.innerHTML = pins.map(p => `
       <div class="pin ${p.mine ? 'mine' : ''}" style="left:${p.x}%; top:${p.y}%;">
-        <div class="pin-dot">${pinIcon()}</div>
+        <div class="pin-dot"><i class="bi bi-record-fill"></i></div>
         <div class="pin-tag">${p.label}</div>
       </div>
     `).join("");
-    pinList.innerHTML = pins.map(p => `<span class="pin-chip">📍 ${p.label}</span>`).join("");
+    pinList.innerHTML = pins.map(p => `<span class="pin-chip"><i class="bi bi-geo-alt-fill"></i> ${p.label}</span>`).join("");
     saveJSON(KEY_PINS, pins);
   }
   renderPins();
@@ -155,25 +162,44 @@
   const qaList = document.getElementById("qaList");
   const qaForm = document.getElementById("qaForm");
   let qaSort = "top";
+  const openReplies = new Set(); // ephemeral UI state
 
   const defaultQuestions = [
-    { id: 1, subject: "Python", text: "Need help with recursion — base case keeps looping!", votes: 4, replies: 4, solved: false, created: Date.now() - 3 * 3600000, userVoted: false },
-    { id: 2, subject: "Algorithms", text: "When do we use DP over plain recursion?", votes: 3, replies: 3, solved: true, created: Date.now() - 8 * 3600000, userVoted: false },
-    { id: 3, subject: "Algorithms", text: "Merge sort vs quicksort — which for near-sorted data?", votes: 2, replies: 0, solved: false, created: Date.now() - 1 * 3600000, userVoted: false },
+    { id: 1, subject: "Python", text: "Need help with recursion — base case keeps looping!", votes: 4, replies: [], solved: false, created: Date.now() - 3 * 3600000, userVoted: false },
+    { id: 2, subject: "Algorithms", text: "When do we use DP over plain recursion?", votes: 3, replies: [], solved: true, created: Date.now() - 8 * 3600000, userVoted: false },
+    { id: 3, subject: "Algorithms", text: "Merge sort vs quicksort — which for near-sorted data?", votes: 2, replies: [], solved: false, created: Date.now() - 1 * 3600000, userVoted: false },
   ];
   let questions = loadJSON(KEY_QA, defaultQuestions);
   let qaNextId = Math.max(0, ...questions.map(q => q.id)) + 1;
 
-  function qaRowHTML(q) {
+  function replyPanelHTML(q) {
+    const list = q.replies.length
+      ? q.replies.map(r => `<li>${escapeHtml(r)}</li>`).join("")
+      : `<li class="reply-empty">No replies yet — be the first to help.</li>`;
     return `
-    <div class="qa-row" data-id="${q.id}">
-      <span class="qa-subject">${q.subject}</span>
-      <span class="qa-question">${q.text}</span>
-      <div class="qa-meta">
-        ${q.solved ? '<span class="qa-solved">Solved</span>' : ''}
-        <button class="qa-replies-btn" aria-label="Add a reply">💬 ${q.replies}</button>
-        <button class="qa-upvote ${q.userVoted ? 'voted' : ''}">▲ ${q.votes}</button>
+    <div class="qa-reply-panel">
+      <ul class="qa-reply-list">${list}</ul>
+      <form class="qa-reply-form">
+        <input type="text" placeholder="Write a reply…" maxlength="200" required>
+        <button type="submit"><i class="bi bi-send"></i></button>
+      </form>
+    </div>`;
+  }
+
+  function qaRowHTML(q) {
+    const open = openReplies.has(q.id);
+    return `
+    <div class="qa-item" data-id="${q.id}">
+      <div class="qa-row">
+        <span class="qa-subject">${q.subject}</span>
+        <span class="qa-question">${q.text}</span>
+        <div class="qa-meta">
+          ${q.solved ? '<span class="qa-solved">Solved</span>' : ''}
+          <button class="qa-replies-btn" aria-label="View replies"><i class="bi bi-chat-dots"></i> ${q.replies.length}</button>
+          <button class="qa-upvote ${q.userVoted ? 'voted' : ''}"><i class="bi bi-caret-up-fill"></i> ${q.votes}</button>
+        </div>
       </div>
+      ${open ? replyPanelHTML(q) : ""}
     </div>`;
   }
 
@@ -181,26 +207,37 @@
     saveJSON(KEY_QA, questions);
     let list = [...questions];
     if (qaSort === "top") list.sort((a, b) => b.votes - a.votes);
-    else if (qaSort === "unanswered") list = list.filter(q => q.replies === 0).concat(list.filter(q => q.replies > 0));
+    else if (qaSort === "unanswered") list = list.filter(q => q.replies.length === 0).concat(list.filter(q => q.replies.length > 0));
     else if (qaSort === "new") list.sort((a, b) => b.created - a.created);
 
     qaList.innerHTML = list.map(qaRowHTML).join("");
-    qaList.querySelectorAll(".qa-row").forEach(row => {
-      const id = Number(row.dataset.id);
+    qaList.querySelectorAll(".qa-item").forEach(item => {
+      const id = Number(item.dataset.id);
       const q = questions.find(x => x.id === id);
-      row.querySelector(".qa-upvote").addEventListener("click", () => {
+
+      item.querySelector(".qa-upvote").addEventListener("click", () => {
         q.userVoted = !q.userVoted;
         q.votes += q.userVoted ? 1 : -1;
         renderQA();
       });
-      row.querySelector(".qa-replies-btn").addEventListener("click", () => {
-        const text = prompt("Write a reply:");
-        if (text && text.trim()) {
-          q.replies += 1;
+
+      item.querySelector(".qa-replies-btn").addEventListener("click", () => {
+        if (openReplies.has(id)) openReplies.delete(id); else openReplies.add(id);
+        renderQA();
+      });
+
+      const form = item.querySelector(".qa-reply-form");
+      if (form) {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const input = form.querySelector("input");
+          const text = input.value.trim();
+          if (!text) return;
+          q.replies.push(text);
           renderQA();
           showToast("Reply posted!");
-        }
-      });
+        });
+      }
     });
   }
   renderQA();
@@ -220,7 +257,7 @@
     const subject = document.getElementById("qaSubject").value;
     const text = input.value.trim();
     if (!text) return;
-    questions.unshift({ id: qaNextId++, subject, text, votes: 1, replies: 0, solved: false, created: Date.now(), userVoted: true });
+    questions.unshift({ id: qaNextId++, subject, text, votes: 1, replies: [], solved: false, created: Date.now(), userVoted: true });
     input.value = "";
     qaSort = "new";
     document.querySelectorAll("[data-qa-sort]").forEach(b => b.classList.toggle("active", b.dataset.qaSort === "new"));
