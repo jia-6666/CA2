@@ -10,7 +10,7 @@
 .container1 {
     width:67%;;
     margin: 80px auto;
-
+    color: #ffffff;
     display: grid;
     grid-template-columns: 67% 33%;
     gap: 25px;
@@ -18,7 +18,7 @@
 
 /* ---------------- CARDS ---------------- */
 
-.card {
+.card1 {
     background: linear-gradient(
         135deg,
         var(--blue-600),
@@ -31,12 +31,12 @@
     transition: all 0.3s ease
 }
 
-.card:hover {
+.card1:hover {
     transform: translateY(-5px);
 }
 
-.card h1,
-.card h2 {
+.card1 h1,
+.card1 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
