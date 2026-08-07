@@ -133,6 +133,7 @@
  
       const searchInput = document.getElementById('searchInput');
       const marker = document.getElementById('mapMarker');
+      const dimOverlay = document.getElementById('mapDimOverlay');
       const notFound = document.getElementById('mapNotFound');
       const mapSection = document.getElementById('mapSection');
       const suggestionsEl = document.getElementById('searchSuggestions');
@@ -155,12 +156,18 @@
         marker.style.top = entry.top + '%';
         marker.style.left = entry.left + '%';
         marker.classList.remove('d-none');
+
+        dimOverlay.style.setProperty('--spot-x', entry.left + '%');
+        dimOverlay.style.setProperty('--spot-y', entry.top + '%');
+        dimOverlay.classList.remove('d-none');
+
         notFound.classList.add('d-none');
         mapSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
  
       function showNotFound() {
         marker.classList.add('d-none');
+        dimOverlay.classList.add('d-none');
         notFound.classList.remove('d-none');
       }
  
