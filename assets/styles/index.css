@@ -7,10 +7,11 @@ body {
 .hero-carousel {
   background: linear-gradient(180deg, #4361ee 0%, #3f37c9 100%);
   color: #fff;
-  padding: 0;        /* was padding-top: 5rem — removes the blue strip entirely */
-  min-height: 460px;  /* adjust back down since there's no extra padding anymore */
+  padding: 0;         /* removes blue space above/below the image */
+  min-height: 460px;
   position: relative;
 }
+
 .hero-carousel::before {
   content: "";
   position: absolute;
@@ -146,11 +147,20 @@ body {
 
 @media (max-width: 576px) {
   .hero-carousel .carousel-item-inner img {
-    aspect-ratio: 4 / 3; /* taller ratio on small screens, less aggressive cropping */
+    aspect-ratio: 4 / 3;
+  }
+
+  .hero-carousel .carousel-item,
+  .hero-carousel .carousel-item-inner {
+    min-height: 0; /* let the image's own aspect-ratio determine height, not the old 460px minimum */
+  }
+
+  .hero-carousel {
+    min-height: 0; /* same fix at the outer level, so no extra blue space is reserved */
   }
 
   .hero-title {
-    font-size: 1.5rem; /* also worth shrinking the title text on mobile, since 2.25rem is large relative to a phone screen */
+    font-size: 1.5rem;
     top: 1rem;
     left: 1rem;
   }
