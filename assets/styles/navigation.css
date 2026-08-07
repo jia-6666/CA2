@@ -483,4 +483,12 @@ body {
   .map-viewport {
     touch-action: none;
   }
+
+  .map-dim-overlay {
+    background: radial-gradient(
+      circle var(--spot-radius, 60px) at var(--spot-x, 50%) var(--spot-y, 50%),
+      transparent var(--spot-radius, 60px),
+      rgba(70, 70, 80, 0.72) var(--spot-edge, 75px)
+    );
+  }
 }
