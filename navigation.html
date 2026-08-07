@@ -41,9 +41,23 @@
  
       <!-- Map card -->
       <section class="map-card mb-4" id="mapSection">
-        <div class="map-wrap">
-          <img src="assets/images/navigation/campus-map.jpeg" alt="SP School of Computing campus map" class="map-card-img" id="mapImg">
+        <div class="map-viewport" id="mapViewport">
+          <div class="map-wrap" id="mapWrap">
+            <img src="assets/images/navigation/campus-map.jpg" alt="SP School of Computing campus map" class="map-card-img" id="mapImg">
+          </div>
+          <div class="map-dim-overlay d-none" id="mapDimOverlay"></div>
           <div class="map-marker d-none" id="mapMarker"></div>
+        </div>
+        <button type="button" class="map-reset-btn d-none" id="mapResetBtn" aria-label="Reset map view">
+          <i class="bi bi-x-lg"></i>
+        </button>
+        <div class="map-zoom-controls">
+          <button type="button" class="map-zoom-btn" id="zoomInBtn" aria-label="Zoom in">
+            <i class="bi bi-plus-lg"></i>
+          </button>
+          <button type="button" class="map-zoom-btn" id="zoomOutBtn" aria-label="Zoom out">
+            <i class="bi bi-dash-lg"></i>
+          </button>
         </div>
         <p class="map-not-found d-none" id="mapNotFound">No match found for that search.</p>
       </section>

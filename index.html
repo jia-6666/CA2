@@ -15,7 +15,20 @@
     <main>
     <!-- Hero carousel section -->
     <section class="hero-carousel position-relative">
-      <div class="hero-title">Introduction to SOC...</div>
+      <div class="intro-bookmark" id="intro-bookmark">
+        <div class="intro-bookmark-panel">
+          <div class="intro-bookmark-header">
+            <button class="intro-bookmark-tab" id="intro-bookmark-tab" aria-label="Toggle introduction description">
+              <span class="intro-bookmark-title">Introduction to SOC...</span>
+              <i class="intro-bookmark-chevron bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <button class="intro-bookmark-toggle" id="intro-bookmark-toggle" aria-label="Minimize or open introduction">☰</button>
+          </div>
+          <div class="intro-bookmark-content">
+            <p>Welcome to the School of Computing portal. Here you'll find navigation help, wellness resources, campus announcements, and tools to support you throughout your studies.</p>
+          </div>
+        </div>
+      </div>
     
       <div id="soc-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -95,5 +108,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="assets/scripts/recent-visits.js"></script>
+    <script src="assets/scripts/index.js"></script>
   </body>
 </html>

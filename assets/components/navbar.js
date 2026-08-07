@@ -12,6 +12,10 @@ export class Navbar extends HTMLElement {
         title: "Resource",
         subLinks: [
           {
+            href: "./announcement.html",
+            title: "Announcement"
+          },
+          {
             href: "./study-dashboard.html",
             title: "Study Dashboard"
           },
