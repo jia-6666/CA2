@@ -1,5 +1,5 @@
 :root {
-    --blue-600: #4763ffe7;
+    --blue-600: #435ffd;
     --blue-700:#3553ff;
     --white: #ffffff;
     --shadow: rgba(0, 0, 0, 0.15);
@@ -28,7 +28,8 @@
     border-radius: 25px;
     padding: 30px;
     box-shadow: 0 15px 35px var(--shadow);
-    transition: all 0.3s ease
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
 .card1:hover {
