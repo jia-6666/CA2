@@ -24,16 +24,6 @@ body {
   pointer-events: none;
 }
 
-.hero-title {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  font-weight: 700;
-  font-size: 2.25rem;
-  z-index: 2;
-  color: #fff;
-}
-
 .hero-carousel #soc-carousel {
   max-width: 100%;   /* full width, no side insets */
   margin: 0;          /* no centering needed anymore */
@@ -62,6 +52,97 @@ body {
 .carousel-control-prev,
 .carousel-control-next {
   width: 5%;
+}
+
+/* ===== Intro bookmark panel ===== */
+.intro-bookmark {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  z-index: 3;
+  --bookmark-width: 420px;
+  --bookmark-peek: 3.25rem; /* width of the strip that stays visible when minimized */
+}
+
+.intro-bookmark-panel {
+  width: var(--bookmark-width);
+  background: rgba(67, 97, 238, 0.92);
+  border-radius: 0 12px 12px 0;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+  transform: translateX(calc(-100% + var(--bookmark-peek))); /* only the toggle icon stays on screen */
+  transition: transform 0.5s ease;
+}
+
+.intro-bookmark.is-open .intro-bookmark-panel {
+  transform: translateX(0);
+}
+
+.intro-bookmark-header {
+  display: flex;
+  align-items: stretch;
+}
+
+.intro-bookmark-tab {
+  flex: 1;
+  min-width: 0; /* allows text to be clipped instead of forcing the header to grow */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.intro-bookmark-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.intro-bookmark-chevron {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.intro-bookmark.is-expanded .intro-bookmark-chevron {
+  transform: rotate(180deg);
+}
+
+.intro-bookmark-toggle {
+  flex-shrink: 0;
+  width: var(--bookmark-peek);
+  background: rgba(0, 0, 0, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: 0 12px 12px 0;
+}
+
+.intro-bookmark-toggle:hover {
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.intro-bookmark-content {
+  max-height: 0;
+  padding: 0 1.5rem;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.intro-bookmark.is-expanded .intro-bookmark-content {
+  max-height: 150px;
+  padding: 0 1.5rem 1.25rem;
 }
 
 /* ===== Speech bubble cards ===== */
@@ -134,15 +215,24 @@ body {
 
 .hero-carousel .carousel-control-prev-icon,
 .hero-carousel .carousel-control-next-icon {
-  background-color: rgba(67, 97, 238, 0.6);
+  background-color: rgba(67, 97, 238, 0.6); /* transparent by default — always, unless actively hovered */
   border-radius: 50%;
-  padding: 1.25rem;
-  background-size: 50%; /* keeps the arrow glyph from being oversized inside the circle */
+  padding: 1.6rem;
+  background-size: 55%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .hero-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
 .hero-carousel .carousel-control-next:hover .carousel-control-next-icon {
-  background-color: rgba(67, 97, 238, 0.6); /* slightly darker on hover for feedback */
+  background-color: #4361ee; /* solid blue only while the mouse is genuinely hovering */
+  transform: scale(1.08);
+}
+
+.hero-carousel .carousel-control-prev,
+.hero-carousel .carousel-control-next {
+  outline: none;
+  box-shadow: none; /* removes Bootstrap's default focus ring */
 }
 
 @media (max-width: 576px) {
@@ -159,9 +249,14 @@ body {
     min-height: 0; /* same fix at the outer level, so no extra blue space is reserved */
   }
 
-  .hero-title {
-    font-size: 1.5rem;
+  .intro-bookmark {
     top: 1rem;
-    left: 1rem;
+    --bookmark-width: 85vw;
+    --bookmark-peek: 2.75rem;
+  }
+
+  .intro-bookmark-tab {
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
   }
 }
