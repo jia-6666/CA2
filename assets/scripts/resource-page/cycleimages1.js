@@ -1,7 +1,8 @@
 const images = [
-    "./assets/images/Resources/Hilltop.jpg",
-    "./assets/images/Resources/Hilltop1.jpg",
-    "./assets/images/Resources/Hilltop2.jpg"
+    "./assets/images/Resources/Hilltop/Hilltop1.jpg",//https://www.facebook.com/spmediacomm/posts/next-well-look-at-hilltop-haven-which-is-located-on-the-second-floor-above-the-h/494589010659303/
+    "./assets/images/Resources/Hilltop/Hilltop2.jpg",//https://www.facebook.com/spmediacomm/posts/next-well-look-at-hilltop-haven-which-is-located-on-the-second-floor-above-the-h/494589010659303/
+    "./assets/images/Resources/Hilltop/Hilltop3.jpg",//https://www.hongjun.sg/2010/02/
+    "./assets/images/Resources/Hilltop/Hilltop4.jpg"//https://www.hongjun.sg/2010/02/
 ];
 
 const card = document.querySelector(".lefttop");
@@ -15,4 +16,4 @@ function changeImage() {
 
 changeImage();
 
-setInterval(changeImage, 3000);
+setInterval(changeImage, 5000);

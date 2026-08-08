@@ -9,7 +9,7 @@
     color:#253b8d;
     width: 500px;
     margin: auto;
-    text-align:left;
+    text-align:center;
     font-size: 45px;
     font-weight: bolder;
 }
@@ -21,8 +21,9 @@
     display: flex;
     content: "";
     position: absolute;
-    width: 300px;
+    width: 300%;
     height: 3px;
+    left:-80%;
     bottom: -8px;
     background: black;
 }
