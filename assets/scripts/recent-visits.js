@@ -11,7 +11,7 @@
     'peer-sharing.html': 'Peer Sharing',
     'peer-support.html': 'Peer Support',
     'resource.html': 'Resources',
-    'study-tools.html': 'Study Tools'
+    'tools.html': 'Study Dashboard'
   };
 
   const STORAGE_KEY = 'recentVisits';
