@@ -25,3 +25,42 @@ input[type="checkbox"]:checked + .text-decoration-line-through-checked {
     display: block;
   }
 }
+
+#audio {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  width: 2em;
+  aspect-ratio: 1;
+}
+
+#toggle-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  appearance: none;
+}
+
+#audio i {
+  position: absolute;
+  /* inset: 0; */
+}
+
+#mute {
+  display: block;
+}
+
+#up {
+  display: none;
+}
+
+#toggle-trigger:checked {
+  + #mute {
+    display: none;
+    + #up {
+      display: block;
+    }
+  }
+}
