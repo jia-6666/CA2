@@ -1,7 +1,8 @@
 :root {
     --blue-600: #435ffd;
     --blue-700:#3553ff;
-    --blue-layer:#121d58b7;
+    --blue-layer-2ndoption:#546effe7;
+    --blue-layer:#2840c5c5;
     --white: #ffffff;
     --shadow: rgba(0, 0, 0, 0.15);
 }
@@ -44,14 +45,18 @@
     transform: translateY(-5px);
 }
 
-.card1 h1,
+.card1 h1{
+    text-align: left;
+}
 .card1 h2{
     text-align: left;
+    font-size:25px;
     margin-bottom: 20px;
 }
 
 .card1 p{
     text-align: left;
+    font-size:18px;
 }
 
 .card1 a,
@@ -94,8 +99,6 @@
     min-height: 830px;
     overflow-y: auto;
 }
-
-
 .heading {
     padding-top:50px;
     color:#253b8d;
@@ -104,7 +107,6 @@
     text-align:left;
     font-size: 45px;
     font-weight: bolder;
-    
 }
 .heading h1 {
     position: relative;
