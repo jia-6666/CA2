@@ -49,6 +49,10 @@
   let suggestions = loadJSON(KEY_SUGGESTIONS, defaultSuggestions);
   let totalVotesCast = loadJSON(KEY_VOTES_CAST, defaultVotesCast);
 
+  // Upgrade any old plain-string comments (saved before edit/delete/reactions
+  // existed) into the richer comment objects CommentSystem expects.
+  suggestions.forEach(s => { s.comments = CommentSystem.migrate(s.comments); });
+
   let activeFilter = "all";
   let activeSort = "top";
   let searchTerm = "";
@@ -75,13 +79,13 @@
     saveJSON(KEY_VOTES_CAST, totalVotesCast);
   }
 
+  // Comment panel markup now comes from the shared CommentSystem so every
+  // comment gets a "posted X ago" timestamp, an emoji-reaction button, and
+  // (for comments the current user posted) edit/delete controls.
   function commentPanelHTML(s) {
-    const list = s.comments.length
-      ? s.comments.map(c => `<li>${escapeHtml(c)}</li>`).join("")
-      : `<li class="comment-empty">No comments yet — be the first.</li>`;
     return `
     <div class="comment-panel">
-      <ul class="comment-list">${list}</ul>
+      <ul class="comment-list">${CommentSystem.renderList(s.comments)}</ul>
       <form class="comment-form">
         <input type="text" placeholder="Add a comment…" maxlength="140" required>
         <button type="submit"><i class="bi bi-send"></i></button>
@@ -107,7 +111,7 @@
             <i class="bi ${s.userVote === -1 ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'}"></i>
           </button>
         </div>
-        <p class="card-title">${s.title}</p>
+        <p class="card-title">${escapeHtml(s.title)}</p>
       </div>
       <div class="card-bottom">
         <div class="card-meta">
@@ -210,16 +214,16 @@
         render(false);
       });
 
-      const form = el.querySelector(".comment-form");
-      if (form) {
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const input = form.querySelector("input");
-          const text = input.value.trim();
-          if (!text) return;
-          s.comments.push(text);
-          render(true);
-          showToast("Comment added!");
+      // Comment panel: adding, editing, deleting and reacting to comments is
+      // all handled by the shared CommentSystem — this page just decides how
+      // to re-render/toast after each kind of change.
+      const commentPanel = el.querySelector(".comment-panel");
+      if (commentPanel) {
+        CommentSystem.bind(commentPanel, s.comments, {
+          onAdd: () => { render(true); showToast("Comment added!"); },
+          onEdit: () => { render(false); showToast("Comment updated!"); },
+          onDelete: () => { render(false); showToast("Comment deleted."); },
+          onReact: () => { render(false); },
         });
       }
     });
@@ -240,6 +244,7 @@
     activeSort = e.target.value;
     render(true);
   });
+
 
   // Composer
   document.getElementById("composerForm").addEventListener("submit", (e) => {

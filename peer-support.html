@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
-  rel="stylesheet" />
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles/global.css" />
   <script type="module" src="assets/components/navbar.js"></script>
   <link rel="stylesheet" href="assets/styles/peer-support.css" />
@@ -48,7 +48,17 @@
       </div>
 
       <div class="recommend-card" id="recommendCard">
-        <p class="recommend-title">Recommended for you</p>
+        <div class="recommend-head">
+          <p class="recommend-title">Recommended for you</p>
+          <!-- Mobile/portrait-only dropdown toggle: the recommendation list can
+             run long and pushes the rest of the page down on small screens,
+             so it's collapsed by default there and the user chooses to open it. -->
+          <button type="button" class="recommend-toggle" id="recommendToggle" aria-expanded="false"
+            aria-controls="recommendItems">
+            <span class="recommend-toggle-label">Show suggestions</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+        </div>
         <div class="recommend-items" id="recommendItems"></div>
       </div>
     </section>
@@ -64,9 +74,23 @@
       </div>
       <p class="panel-sub">Live spots students have checked into today. Click the map to drop your own pin.</p>
 
-      <div class="map-frame" id="mapFrame">
-        <img class="campus-map-img" src="assets/images/navigation/campus-map.jpg" alt="Campus map">
-        <div class="pins-layer" id="pinsLayer"></div>
+      <!-- ===== Zoomable/pannable map viewport =====
+         mapViewport clips overflow and stays a fixed size; mapFrame is the
+         layer that actually gets scaled/translated by peer-support.js so the
+         map (which is quite small on portrait/mobile screens) can be zoomed
+         in for a closer look and panned around while zoomed. -->
+      <div class="map-viewport" id="mapViewport">
+        <div class="map-frame" id="mapFrame">
+          <img class="campus-map-img" src="assets/images/navigation/campus-map.jpg" alt="Campus map">
+          <div class="pins-layer" id="pinsLayer"></div>
+        </div>
+        <div class="map-controls" id="mapControls">
+          <button type="button" id="zoomInBtn" aria-label="Zoom in"><i class="bi bi-plus-lg"></i></button>
+          <button type="button" id="zoomOutBtn" aria-label="Zoom out"><i class="bi bi-dash-lg"></i></button>
+          <button type="button" id="zoomResetBtn" aria-label="Reset zoom"><i
+              class="bi bi-arrows-angle-contract"></i></button>
+        </div>
+        <span class="map-zoom-hint" id="mapZoomHint">Pinch, scroll, or use the buttons to zoom</span>
       </div>
 
       <div class="pin-list" id="pinList"></div>
@@ -101,7 +125,7 @@
   </main>
 
   <div class="toast" id="toast" role="status"></div>
-
+  <script src="assets/scripts/comments.js"></script>
   <script src="assets/scripts/peer-support.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
