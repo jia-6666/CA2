@@ -516,10 +516,11 @@
     { id: 5, tag: "Resource", title: "Free mock interview practice: Pramp + Interviewing.io", linkType: null, linkUrl: null, likes: 27, comments: [], liked: false, textOnly: true, pinned: false, isOwn: false },
     { id: 6, tag: "Life", title: "Finally beat my personal best at bouldering after finals 🧗", img: "https://picsum.photos/seed/bouldering/400/340", linkType: null, linkUrl: null, likes: 33, comments: [], liked: false, pinned: false, isOwn: false },
   ];
-  let posts = loadJSON(KEY_POSTS, defaultPosts);
+let posts = loadJSON(KEY_POSTS, defaultPosts);
   // Upgrade any old plain-string comments saved before edit/delete/reactions existed.
   posts.forEach(p => { p.comments = CommentSystem.migrate(p.comments); });
   const lifeFeed = document.getElementById("lifeFeed");
+  let activeLifeTag = "all";
 
   function feedCardHTML(p) {
     const cid = `post-${p.id}`;
@@ -546,7 +547,8 @@
 
   function renderFeed() {
     saveJSON(KEY_POSTS, posts);
-    lifeFeed.innerHTML = posts.map(feedCardHTML).join("");
+    const visiblePosts = activeLifeTag === "all" ? posts : posts.filter(p => p.tag === activeLifeTag);
+    lifeFeed.innerHTML = visiblePosts.map(feedCardHTML).join("");
     lifeFeed.querySelectorAll(".feed-card").forEach(card => {
       const id = Number(card.dataset.id);
       const p = posts.find(x => x.id === id);
@@ -599,6 +601,14 @@
     });
   }
   renderFeed();
+  document.getElementById("lifeFilterChips").addEventListener("click", (e) => {
+    const btn = e.target.closest(".chip");
+    if (!btn) return;
+    document.querySelectorAll("#lifeFilterChips .chip").forEach(c => c.classList.remove("active"));
+    btn.classList.add("active");
+    activeLifeTag = btn.dataset.tag;
+    renderFeed();
+  });
 
   /* ================= Pinned sidebar list ================= */
   const pinnedList = document.getElementById("pinnedList");
@@ -765,9 +775,10 @@
       return;
     }
 
+    const chosenTag = document.getElementById("composerTag").value;
     posts.unshift({
       id: Date.now(),
-      tag: pendingImageData ? "Photo" : "Life",
+      tag: chosenTag,
       title: text,
       img: pendingImageData || null,
       linkType: composerLinkType, linkUrl: fullUrl,
@@ -788,6 +799,7 @@
     pendingUrlValue = "";
     composerFileInput.value = "";
     composerDest.value = "life";
+    document.getElementById("composerTag").value = "Meme";
     renderComposerDetail();
   }
 

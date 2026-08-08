@@ -337,7 +337,7 @@
       items: [
         { label: "Book a quiet study room", sub: "45-min slots open now", icon: `<path d="M4 4h16v16H4z"/><path d="M8 2v4M16 2v4M4 10h16"/>`, action: { type: "scroll", target: "#mapSection" } },
         { label: "Contact Student Counsellor", sub: "Free, confidential, same-day slots", icon: `<path d="M4 12a8 8 0 1 1 8 8H7l-3 3v-5.3A8 8 0 0 1 4 12z"/>`, action: { type: "link", href: "mailto:counselling@sp.edu.sg" } },
-        { label: "See the Wellness resource hub", sub: "Breathing exercises & sleep tips", icon: `<path d="M12 21s-7.5-4.6-10-9.1C0.3 8.4 2 4.8 5.6 4.1c2-.4 4 .5 5 2.2 1-1.7 3-2.6 5-2.2 3.6.7 5.3 4.3 3.6 7.8C19.5 16.4 12 21 12 21z"/>`, action: { type: "link", href: "resources.html" } },
+        { label: "See the Wellness resource hub", sub: "Breathing exercises & sleep tips", icon: `<path d="M12 21s-7.5-4.6-10-9.1C0.3 8.4 2 4.8 5.6 4.1c2-.4 4 .5 5 2.2 1-1.7 3-2.6 5-2.2 3.6.7 5.3 4.3 3.6 7.8C19.5 16.4 12 21 12 21z"/>`, action: { type: "external", href: "https://www.helpguide.org/mental-health/stress/stress-management" } },
       ]
     },
     {
@@ -363,6 +363,9 @@
     if (action.type === "scroll") {
       const el = document.querySelector(action.target);
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else if (action.type === "external") {
+      const ok = confirm("This will open an external website in a new tab. Continue?");
+      if (ok) window.open(action.href, "_blank", "noopener,noreferrer");
     } else if (action.type === "link") {
       window.location.href = action.href;
     }

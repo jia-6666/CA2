@@ -43,13 +43,24 @@
             <i class="bi bi-display"></i> Project Demo
           </button>
           <label class="composer-dest">
-            <span>Post to</span>
-            <select id="composerDest" aria-label="Where should this be posted?">
-              <option value="life">Life Outside Classroom</option>
-              <option value="showcase">Student Projects Showcase</option>
-            </select>
-          </label>
-          <button class="composer-post" id="composerPost" type="button">Post</button>
+          <span>Post to</span>
+          <select id="composerDest" aria-label="Where should this be posted?">
+            <option value="life">Life Outside Classroom</option>
+            <option value="showcase">Student Projects Showcase</option>
+          </select>
+        </label>
+        <label class="composer-dest">
+          <span>Tag</span>
+          <select id="composerTag" aria-label="Tag your post">
+            <option value="Meme">Meme</option>
+            <option value="School">School</option>
+            <option value="Resource">Resource</option>
+            <option value="Rant">Rant</option>
+            <option value="Life">Life</option>
+            <option value="Photo">Photo</option>
+          </select>
+        </label>
+        <button class="composer-post" id="composerPost" type="button">Post</button>
         </div>
         <p class="composer-hint" id="composerHint" hidden></p>
       </section>
@@ -65,8 +76,17 @@
       </section>
 
       <section class="tab-panel" id="panel-life" hidden>
-        <div class="masonry" id="lifeFeed"></div>
-      </section>
+      <div class="filter-chips" id="lifeFilterChips">
+        <button class="chip active" data-tag="all">All</button>
+        <button class="chip" data-tag="Meme">Meme</button>
+        <button class="chip" data-tag="School">School</button>
+        <button class="chip" data-tag="Resource">Resource</button>
+        <button class="chip" data-tag="Rant">Rant</button>
+        <button class="chip" data-tag="Life">Life</button>
+        <button class="chip" data-tag="Photo">Photo</button>
+      </div>
+      <div class="masonry" id="lifeFeed"></div>
+    </section>
     </div>
 
     <aside class="side-col">
