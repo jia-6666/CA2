@@ -98,6 +98,8 @@ body {
 }
 
 .intro-bookmark-title {
+  margin: 0;
+  font: inherit; /* resets the browser's default h2 size/weight so it visually matches the surrounding text */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -154,7 +156,8 @@ body {
   font-weight: 700;
 }
 
-.bubble-card h5 {
+.bubble-card h3 {
+  font-size: 1.25rem; /* keeps the same visual size as before — Bootstrap's default h3 is bigger than h5 */
   font-weight: 700;
   margin-bottom: 1rem;
 }
@@ -181,7 +184,8 @@ body {
   flex-direction: column;
 }
 
-.recent-visits-card h5 {
+.recent-visits-card h3 {
+  font-size: 1.25rem; /* keeps the same visual size as before — Bootstrap's default h3 is bigger than h5 */
   font-weight: 700;
   margin-bottom: 1rem;
 }
