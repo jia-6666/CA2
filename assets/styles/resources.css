@@ -1,7 +1,8 @@
 :root {
     --blue-600: #435ffd;
     --blue-700:#3553ff;
-    --blue-layer:#121d58b7;
+    --blue-layer-2ndoption:#546effe7;
+    --blue-layer:#2840c5c5;
     --white: #ffffff;
     --shadow: rgba(0, 0, 0, 0.15);
 }
@@ -18,6 +19,7 @@
 }.container2 {
     width:67%;;
     margin: 80px auto;
+    margin-top: 0px;
     color: #ffffff;
     display: grid;
     grid-template-columns: 67% 33%;
@@ -36,7 +38,7 @@
     border-radius: 25px;
     padding: 50px;
     box-shadow: 0 15px 35px var(--shadow);
-    transition: all 0.5s ease;
+    transition: all .5s ease;
     text-align: center;
 }
 
@@ -44,14 +46,18 @@
     transform: translateY(-5px);
 }
 
-.card1 h1,
+.card1 h1{
+    text-align: left;
+}
 .card1 h2{
     text-align: left;
+    font-size:25px;
     margin-bottom: 20px;
 }
 
 .card1 p{
     text-align: left;
+    font-size:18px;
 }
 
 .card1 a,
@@ -85,16 +91,59 @@
     position: relative;
     z-index: 2;
 }
-.leftbottom {
-    min-height: 290px;
-}
 
-.right {
+
+
+.card1.right {
     grid-row: span 2;
     min-height: 830px;
     overflow-y: auto;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
+.card1.right::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blue-layer);
+    z-index: 1;
+}
+
+.card1.right * {
+    position: relative;
+    z-index: 2;
+}
+
+
+.leftbottom {
+    overflow: auto;
+    min-height: 290px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.card1.leftbottom::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blue-layer);
+    z-index: 1;
+}
+
+.card1.leftbottom * {
+    position: relative;
+    z-index: 2;
+}
 
 .heading {
     padding-top:50px;
@@ -104,8 +153,8 @@
     text-align:left;
     font-size: 45px;
     font-weight: bolder;
-    
 }
+
 .heading h1 {
     position: relative;
     display: inline-block;
