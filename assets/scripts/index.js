@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openPanel() {
     bookmark.classList.add('is-open');
+    bookmark.classList.add('is-expanded'); // automatically show the description whenever the panel opens
     startAutoCloseTimer();
   }
 
@@ -60,4 +61,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Auto-open on page load
   openPanel();
+
+  // ===== Carousel rapid-click fix =====
+  // Clicking prev/next again before a slide transition finishes can leave
+  // two slides marked "active" at once, causing an overlap/flicker.
+  // Block extra clicks until the current transition has fully completed.
+  const carouselEl = document.getElementById('soc-carousel');
+  if (carouselEl) {
+    let isSliding = false;
+
+    carouselEl.addEventListener('slide.bs.carousel', () => {
+      isSliding = true;
+      carouselEl.classList.add('is-sliding');
+    });
+
+    carouselEl.addEventListener('slid.bs.carousel', () => {
+      isSliding = false;
+      carouselEl.classList.remove('is-sliding');
+    });
+
+    const controls = carouselEl.querySelectorAll(
+      '.carousel-control-prev, .carousel-control-next, .carousel-indicators button'
+    );
+
+    controls.forEach((btn) => {
+      btn.addEventListener(
+        'click',
+        (e) => {
+          if (isSliding) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+          }
+        },
+        true // capture phase, so this runs before Bootstrap's own click handler
+      );
+
+      // Remove focus after clicking so no leftover focus styling sticks
+      // once the mouse moves away from the button
+      btn.addEventListener('click', () => {
+        btn.blur();
+      });
+    });
+  }
 });

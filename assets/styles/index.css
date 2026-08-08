@@ -5,10 +5,10 @@ body {
 
 /* ===== Hero / Carousel ===== */
 .hero-carousel {
-  background: linear-gradient(180deg, #4361ee 0%, #3f37c9 100%);
+  background: none; /* removed entirely — just the image, no blue showing anywhere around it */
   color: #fff;
-  padding: 0;         /* removes blue space above/below the image */
-  min-height: 460px;
+  padding: 0;
+  min-height: 0;
   position: relative;
 }
 
@@ -31,14 +31,12 @@ body {
 }
 
 .hero-carousel .carousel-item {
-  min-height: 460px;
+  min-height: 0;
 }
 
 .hero-carousel .carousel-item-inner {
-  min-height: 460px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 0;
+  display: block;
 }
 
 .hero-carousel .carousel-item-inner img {
@@ -52,6 +50,12 @@ body {
 .carousel-control-prev,
 .carousel-control-next {
   width: 5%;
+}
+
+#soc-carousel.is-sliding .carousel-control-prev,
+#soc-carousel.is-sliding .carousel-control-next,
+#soc-carousel.is-sliding .carousel-indicators button {
+  pointer-events: none; /* extra safety net alongside the JS click-blocking, in case a click slips through mid-transition */
 }
 
 /* ===== Intro bookmark panel ===== */
@@ -238,15 +242,6 @@ body {
 @media (max-width: 576px) {
   .hero-carousel .carousel-item-inner img {
     aspect-ratio: 4 / 3;
-  }
-
-  .hero-carousel .carousel-item,
-  .hero-carousel .carousel-item-inner {
-    min-height: 0; /* let the image's own aspect-ratio determine height, not the old 460px minimum */
-  }
-
-  .hero-carousel {
-    min-height: 0; /* same fix at the outer level, so no extra blue space is reserved */
   }
 
   .intro-bookmark {
