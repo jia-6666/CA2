@@ -68,18 +68,26 @@ export class Navbar extends HTMLElement {
     this.render();
   }
 
+  // Pure Helper: Checks active path state
+  isActive(targetHref) {
+    const cleanTarget = targetHref.replace("./", "");
+    if (!cleanTarget || cleanTarget === "index.html") {
+      return this.currentPWD === "" || this.currentPWD === "index.html";
+    }
+    return this.currentPWD.includes(cleanTarget);
+  }
+
   // Generates mobile-specific links (with accordion-style toggle arrow for sub-links)
   renderMobileLinks() {
     return this.firstLayerLinks
       .map((link, index) => {
-        const checkActive = (l) => l.href.includes(this.currentPWD) && this.currentPWD != "" || this.currentPWD == "" && l.title == "Home";
-        const activeClass = checkActive(link) ? "text-decoration-underline" : "";
-        const activeHref = checkActive(link) ? "javascript:void(0)" : link.href
+        const activeClass = this.isActive(link.href) ? "text-decoration-underline" : "";
+        const activeHref = this.isActive(link.href) ? "javascript:void(0)" : link.href
 
         if (link.subLinks && link.subLinks.length > 0) {
           const subItemsHtml = link.subLinks
             .map((sub) => {
-              const isSubActive = checkActive(sub);
+              const isSubActive = this.isActive(sub.href);
               return `<li class="py-1"><a class="nav-link fw-bold text-white ${isSubActive ? 'text-decoration-underline' : ''}" href="${sub.href}">${sub.title}</a></li>`;
             })
             .join("");
@@ -110,14 +118,13 @@ export class Navbar extends HTMLElement {
   renderDesktopLinks() {
     return this.firstLayerLinks
       .map((link) => {
-        const isActive = link.href.includes(this.currentPWD) && this.currentPWD != "" || this.currentPWD == "" && link.title == "Home";
-        const activeClass = isActive ? "text-decoration-underline" : "";
-        const activeHref = isActive ? "javascript:void(0)" : link.href
+        const activeClass = this.isActive(link.href) ? "text-decoration-underline" : "";
+        const activeHref = this.isActive(link.href) ? "javascript:void(0)" : link.href
 
         if (link.subLinks && link.subLinks.length > 0) {
           const subItemsHtml = link.subLinks
             .map((sub) => {
-              const isSubActive = this.currentPWD.includes(sub.href);
+              const isSubActive = this.isActive(sub.href);
               return `<li><a class="dropdown-item fw-bold text-white ${isSubActive ? 'text-decoration-underline' : ''}" href="${sub.href}">${sub.title}</a></li>`;
             })
             .join("");
