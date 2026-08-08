@@ -1,7 +1,7 @@
 const images3 = [
-    "./assets/images/Resources/Hilltop/Hilltop1.jpg",
-    "./assets/images/Resources/Hilltop/Hilltop2.jpg",
-    "./assets/images/Resources/Hilltop/Hilltop3.jpg"
+    "./assets/images/Resources/Food/Food1.jpg",//https://p1922644.neocities.org/foodcourt6
+    "./assets/images/Resources/Food/Food2.jpg",//https://eatbook.sg/singapore-polytechnic-food/#10_Creamy_Duck
+    "./assets/images/Resources/Food/Food3.jpg"//
 ];
 
 const card3 = document.querySelector(".leftbottom");
