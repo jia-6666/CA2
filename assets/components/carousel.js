@@ -53,6 +53,7 @@ export class Carousel extends HTMLElement {
     try {
       const announcements = await this._db.getByDate(new Date("2026-08-01"), new Date().toLocaleDateString('en-CA'));
       this.shadowRootRef.innerHTML = `
+      <link rel="stylesheet" href="assets/styles/carousel.css">
         ${this.generateChildElements(announcements)}
       `;
       this.items = Array.from(this.shadowRootRef.querySelectorAll('.item'));

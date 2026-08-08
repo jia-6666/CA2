@@ -74,19 +74,6 @@ main {
   border-radius: 50%;
 }
 
-@media (min-width: 992px) {
-  .dropdown-hover:hover .dropdown-menu {
-    display: block;
-    margin-top: 0;
-  }
-}
-
-@media (max-width: 991px) {
-  .navbar {
-    animation: none;
-  }
-}
-
 @keyframes stickyNav {
   100% {
     position: sticky;
@@ -123,6 +110,26 @@ main {
   }
 }
 
+.carousel {
+  margin-top: -4rem;
+}
+
 main {
   view-transition-name: main-content;
+}
+
+@media (min-width: 992px) {
+  .dropdown-hover:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar {
+    animation: none;
+  }
+  .carousel {
+    margin-top: 0rem;
+  }
 }

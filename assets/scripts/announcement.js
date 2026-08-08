@@ -59,23 +59,103 @@ async function initAnnouncementDB() {
     await db.connect("Announcement", 1);
     return db;
 }
+function renderEvents(events, eventContainer) {
+    // Remove existing event cards while keeping section header controls
+    const existingCards = eventContainer.querySelectorAll('.event-card-wrapper');
+    existingCards.forEach(card => card.remove());
 
-// async function main() {
-//     try {
-//         const announcementDB = await initAnnouncementDB();
-//         const carouselEl = document.getElementById("carousel");
+    events.forEach((event) => {
+        const div = document.createElement('div');
+        div.className = "container py-5 event-card-wrapper";
+        div.innerHTML = `
+<div class="card event-card border-0 rounded-4 overflow-hidden shadow-sm">
+    <div class="row g-0 align-items-stretch min-vh-25">
+      <!-- Mobile Image (visible on screens smaller than md) -->
+      <img 
+        class="col-12 img-container d-block d-md-none bg-white border-bottom border-light-subtle"
+        src="assets/images/announcements/${event.desktopImage}"
+        alt="${event.title}" />
 
-//         if (carouselEl) {
-//             carouselEl.db = announcementDB; // Setting trigger automatic renders
-//         }
-//     } catch (error) {
-//         console.error("Initialization error:", error);
-//     }
-// }
+      <!-- Desktop Image (visible on md screens and above) -->
+      <img 
+        class="col-md-4 col-lg-3 img-container d-none d-md-block bg-white border-end border-light-subtle"
+        src="assets/images/announcements/${event.mobileImage}"
+        alt="${event.title}" />
 
-// // Wait for DOM content to fully load before binding custom elements
-// if (document.readyState === "loading") {
-//     document.addEventListener("DOMContentLoaded", main);
-// } else {
-//     main();
-// }
+      <!-- Right Content Section -->
+      <div class="col-md-8 col-lg-9 gradient-bg p-4 p-md-5 d-flex flex-column justify-content-between text-white">
+        <div>
+          <h2 class="card-title fw-bold mb-2">${event.title}</h2>
+          <p class="card-text fs-4 fw-medium text-white-50 line-clamp-3">${event.description}</p>
+        </div>
+        <div class="d-flex justify-content-end mt-4">
+          <a class="btn btn-signup text-white px-4 py-2 rounded-pill fw-semibold" href="${event.redirectURI}" target="_blank" rel="noopener noreferrer">
+            Sign Up
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+        `;
+        eventContainer.appendChild(div);
+    });
+}
+
+function sortEvents(events, sortType) {
+    const sorted = [...events];
+    if (sortType === 'asc') {
+        sorted.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortType === 'desc') {
+        sorted.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sortType === 'date') {
+        sorted.sort((a, b) => new Date(a.time) - new Date(b.time));
+    }
+    return sorted;
+}
+
+async function main() {
+    try {
+        const announcementDB = await initAnnouncementDB();
+        const carouselEl = document.getElementById("carousel");
+
+        if (carouselEl) {
+            carouselEl.db = announcementDB;
+        }
+
+        const rawEvents = await announcementDB.getAll();
+        const eventContainer = document.getElementById("events-container");
+        const sortBtn = document.getElementById("sortDropdownBtn");
+        const dropdownItems = document.querySelectorAll("#sortDropdownMenu .dropdown-item");
+
+        // Initial render (default: Title Ascending)
+        let currentSort = "asc";
+        let displayedEvents = sortEvents(rawEvents, currentSort);
+        renderEvents(displayedEvents, eventContainer);
+
+        // Bind click listener to dropdown options
+        dropdownItems.forEach((item) => {
+            item.addEventListener("click", (e) => {
+                e.preventDefault();
+                const sortType = item.getAttribute("data-sort");
+
+                // Update UI button label and active class
+                sortBtn.textContent = item.textContent;
+                dropdownItems.forEach((i) => i.classList.remove("active"));
+                item.classList.add("active");
+
+                // Sort and re-render events
+                displayedEvents = sortEvents(rawEvents, sortType);
+                renderEvents(displayedEvents, eventContainer);
+            });
+        });
+
+    } catch (error) {
+        console.error("Initialization error:", error);
+    }
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", main);
+} else {
+    main();
+}

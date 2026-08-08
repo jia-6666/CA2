@@ -17,60 +17,30 @@
 
 <body>
   <nav-bar></nav-bar>
+  <custom-carousel></custom-carousel>
+  <!-- <a href="#all-events" class="scrollDown">
+    <i class="bi bi-arrow-down-circle"></i>
+    Scroll Down</a> -->
   <main>
-    <custom-carousel>
-      <figure class="item" data-id="1">
-        <img class="desktop" src="assets/images/announcements/SCS_poster_h.jpg"
-          alt="Tech Insights Series: Inside the World of Cloud Computing">
-        <img class="mobile" src="assets/images/announcements/SCS_poster_v.jpg"
-          alt="Tech Insights Series: Inside the World of Cloud Computing">
-      </figure>
-      <figure class="item" data-id="2">
-        <img class="desktop" src="assets/images/announcements/HowToReact_poster_h.png" alt="How To React Workshop">
-        <img class="mobile" src="assets/images/announcements/HowToReact_poster_v.png" alt="How To React Workshop">
-      </figure>
-      <figure class="item" data-id="3">
-        <img class="desktop" src="assets/images/announcements/Icecream_poster_h.png"
-          alt="Ice-Cream Candle Making Workshop">
-        <img class="mobile" src="assets/images/announcements/Icecream_poster_v.png"
-          alt="Ice-Cream Candle Making Workshop">
-      </figure>
-    </custom-carousel>
-
     <!-- All Events Section -->
     <section class="all-events-section" id="all-events">
-      <div class="container">
-
+      <div class="container" id="events-container">
         <!-- Section Controls -->
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h2 class="section-title">All Events:</h2>
 
           <div class="dropdown">
-            <button class="btn btn-sort dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-sort dropdown-toggle" id="sortDropdownBtn" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Sort By (asc)
             </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">Sort By (asc)</a></li>
-              <li><a class="dropdown-item" href="#">Sort By (desc)</a></li>
-              <li><a class="dropdown-item" href="#">Date</a></li>
+            <ul class="dropdown-menu dropdown-menu-end" id="sortDropdownMenu">
+              <li><a class="dropdown-item active" href="#" data-sort="asc">Sort By (asc)</a></li>
+              <li><a class="dropdown-item" href="#" data-sort="desc">Sort By (desc)</a></li>
+              <li><a class="dropdown-item" href="#" data-sort="date">Date</a></li>
             </ul>
           </div>
         </div>
-
-        <!-- Event Card -->
-        <div class="custom-card">
-          <div class="card-img-placeholder">
-            Img
-          </div>
-          <div class="card-content">
-            <div>
-              <div class="card-title-text">Title</div>
-              <div class="card-desc-text">Description...</div>
-            </div>
-            <button class="btn btn-card-signup">Sign Up</button>
-          </div>
-        </div>
-
       </div>
     </section>
   </main>
