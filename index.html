@@ -18,10 +18,9 @@
       <div class="intro-bookmark" id="intro-bookmark">
         <div class="intro-bookmark-panel">
           <div class="intro-bookmark-header">
-            <button class="intro-bookmark-tab" id="intro-bookmark-tab" aria-label="Toggle introduction description">
-              <span class="intro-bookmark-title">Introduction to SOC...</span>
-              <i class="intro-bookmark-chevron bi bi-chevron-down" aria-hidden="true"></i>
-            </button>
+            <div class="intro-bookmark-tab">
+              <h2 class="intro-bookmark-title">Introduction to SOC...</h2>
+            </div>
             <button class="intro-bookmark-toggle" id="intro-bookmark-toggle" aria-label="Minimize or open introduction">☰</button>
           </div>
           <div class="intro-bookmark-content">
@@ -30,7 +29,7 @@
         </div>
       </div>
     
-      <div id="soc-carousel" class="carousel slide" data-bs-ride="carousel">
+      <div id="soc-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="carousel-item-inner">
@@ -71,7 +70,7 @@
           <div class="row g-4">
             <div class="col-12">
               <div class="bubble-card">
-                <h5>Not sure how to get to class?</h5>
+                <h3>Not sure how to get to class?</h3>
                 <p class="mb-0">Click here &gt; <a href="navigation.html">Navigation</a></p>
                 <div class="bubble-tail"></div>
               </div>
@@ -79,7 +78,7 @@
     
             <div class="col-12 mt-4">
                 <div class="bubble-card">
-                  <h5>Feeling stress or lost?</h5>
+                  <h3>Feeling stress or lost?</h3>
                   <p class="mb-1">Click here to contact a counsellor</p>
                   <p class="mb-2">&gt; <a href="contact.html">Contact</a></p>
                   <p class="mb-1">Click here for peer support</p>
@@ -91,7 +90,7 @@
     
         <div class="col-lg-5">
           <div class="recent-visits-card" >
-            <h5>Recent visits</h5>
+            <h3>Recent visits</h3>
               <ul id="recent-visits-list">
                 <li>No recent visits yet</li>
               </ul>
@@ -100,7 +99,6 @@
           </div>
         </div>
       </div>
-    </div>
     </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
