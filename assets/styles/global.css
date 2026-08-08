@@ -21,6 +21,9 @@ body {
 
 main {
   background-color: var(--bg-color);
+  z-index: 2;
+  position: relative;
+  view-transition-name: main-content;
 }
 
 ::-webkit-scrollbar {
@@ -74,6 +77,10 @@ main {
   border-radius: 50%;
 }
 
+.carousel {
+  margin-top: -4rem;
+}
+
 @keyframes stickyNav {
   100% {
     position: sticky;
@@ -108,14 +115,6 @@ main {
   from {
     translate: 100vw;
   }
-}
-
-.carousel {
-  margin-top: -4rem;
-}
-
-main {
-  view-transition-name: main-content;
 }
 
 @media (min-width: 992px) {

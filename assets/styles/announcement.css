@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css");
+
 .carousel {
   anchor-name: --carsouel;
   width: 100%;
@@ -12,12 +14,14 @@
 .carousel::scroll-button(right),
 .carousel::scroll-button(left) {
   height: 100%;
+  color: white;
   font-size: 3rem;
   border: none;
   position: absolute;
   position-anchor: --carsouel;
   transition: 300ms background-color ease-in-out;
   background-color: transparent;
+  z-index: 3;
 }
 
 .carousel::scroll-button(right):disabled,
@@ -27,7 +31,6 @@
 
 .carousel::scroll-button(right):enabled:hover,
 .carousel::scroll-button(left):enabled:hover {
-  background-color: aqua;
   cursor: pointer;
 }
 
@@ -49,6 +52,7 @@
   justify-content: center;
   margin: 0;
   position: relative;
+  color: white;
 }
 
 .item img {
@@ -59,16 +63,43 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, #1a3ada, #3955e269, #4460eb17);
-  opacity: 80%;
+  background: linear-gradient(0deg, #1a3ada, #202f7ebd, #1a224de5);
+  z-index: 1;
 }
 
+.item a {
+  z-index: 3;
+  bottom: 6rem;
+  right: 2rem;
+}
+
+.item .details {
+  position: absolute;
+  z-index: 3;
+  top: 7rem;
+  left: 5rem;
+  right: 5rem;
+  font-size: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.details p {
+  font-size: 1.4rem;
+}
 .desktop {
   display: block;
 }
 
 .mobile {
   display: none;
+}
+
+.scrollDown {
+  z-index: 2;
+  position: fixed;
+  bottom: 2rem;
+  left: 5rem;
+  color: white;
 }
 
 @media (max-width: 991px) {
@@ -78,13 +109,26 @@
   .mobile {
     display: block;
   }
-}
-
-.scrollDown {
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  color: white;
+  .item a {
+    bottom: 10rem;
+    left: auto;
+    right: 2rem;
+  }
+  .scrollDown {
+    left: 2rem;
+  }
+  .item .details {
+    top: 2rem;
+    left: 2rem;
+    right: 2rem;
+  }
+  .details figcaption,
+  .details span {
+    font-size: 1.5rem;
+  }
+  .details p {
+    font-size: 1rem;
+  }
 }
 
 /* Card Outer Frame */
@@ -136,4 +180,12 @@
 
 .event-card-wrapper {
   animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Description Line Clamp */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
