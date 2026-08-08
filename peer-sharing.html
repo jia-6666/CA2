@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
-  rel="stylesheet" />
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles/global.css" />
   <script type="module" src="assets/components/navbar.js"></script>
   <link rel="stylesheet" href="assets/styles/peer-sharing.css" />
@@ -42,6 +42,13 @@
           <button class="composer-btn" type="button" data-kind="demo">
             <i class="bi bi-display"></i> Project Demo
           </button>
+          <label class="composer-dest">
+            <span>Post to</span>
+            <select id="composerDest" aria-label="Where should this be posted?">
+              <option value="life">Life Outside Classroom</option>
+              <option value="showcase">Student Projects Showcase</option>
+            </select>
+          </label>
           <button class="composer-post" id="composerPost" type="button">Post</button>
         </div>
         <p class="composer-hint" id="composerHint" hidden></p>
@@ -71,14 +78,18 @@
         <p class="eyebrow light">Pinned</p>
         <h3>Studying Resources</h3>
         <p class="side-sub">Curated notes, past papers &amp; the LeetCode grind list, kept up to date by seniors.</p>
-        <a class="side-cta" href="resources.html">Open collection <i class="bi bi-arrow-right"></i></a>
         <ul class="pinned-list" id="pinnedList"></ul>
       </div>
     </aside>
   </main>
 
-  <div class="toast" id="toast" role="status"></div>
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image"><i class="bi bi-x-lg"></i></button>
+    <img id="lightboxImg" src="" alt="Enlarged image">
+  </div>
 
+  <div class="toast" id="toast" role="status"></div>
+  <script src="assets/scripts/comments.js"></script>
   <script src="assets/scripts/peer-sharing.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

@@ -40,8 +40,20 @@ export class Carousel extends HTMLElement {
     return announcements
       .map((announcement) => `
         <figure class="item" data-id="${announcement.id}">
+          <div class="details">
+          <figcaption>${announcement.title}</figcaption> 
+          ${announcement.organizer ? `<span>Organizer: ${announcement.organizer}</span>` : ''}
+          ${announcement.description ? `<p class="mb-2 line-clamp-3">${announcement.description}</p>` : ''}
+          ${announcement.location ? `<p class="mb-1"><strong>Location:</strong> ${announcement.location}</p>` : ''}
+          ${announcement.time ? `<p class="mb-1"><strong>Time:</strong> ${new Date(announcement.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>` : ''}
+          ${announcement.itinerary ? `<p class="mb-0"><strong>What to bring:</strong> ${announcement.itinerary}</p>` : ''}
+          </div>
+   
           <img class="desktop" src="assets/images/announcements/${announcement.desktopImage}" alt="${announcement.title}" />
           <img class="mobile" src="assets/images/announcements/${announcement.mobileImage}" alt="${announcement.title}" />
+          <a href="${announcement.redirectURI || '#'}" target="_blank" rel="noopener noreferrer" class="position-absolute btn btn-primary rounded-pill px-4 py-2 fw-semibold border-0" style="background-color: #2b44b8;">
+                Click here to sign up
+              </a>
         </figure>
       `)
       .join('');
@@ -53,6 +65,7 @@ export class Carousel extends HTMLElement {
     try {
       const announcements = await this._db.getByDate(new Date("2026-08-01"), new Date().toLocaleDateString('en-CA'));
       this.shadowRootRef.innerHTML = `
+      <link rel="stylesheet" href="assets/styles/announcement.css">
         ${this.generateChildElements(announcements)}
       `;
       this.items = Array.from(this.shadowRootRef.querySelectorAll('.item'));

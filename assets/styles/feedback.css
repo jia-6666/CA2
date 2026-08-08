@@ -35,6 +35,97 @@ body {
   color: var(--ink-900);
   padding-bottom: 110px; /* room for fixed composer */
 }
+
+/* ===== Header ===== */
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
+  padding: 14px 28px;
+  border-radius: 0 0 26px 26px;
+  box-shadow: 0 8px 30px -14px rgba(47, 62, 176, 0.55);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-right: auto;
+}
+.brand-mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  background: var(--white);
+  color: var(--blue-700);
+  padding: 6px 9px;
+  border-radius: 9px;
+  letter-spacing: 0.02em;
+}
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--white);
+  font-size: 16px;
+}
+.site-nav {
+  display: flex;
+  gap: 26px;
+}
+.site-nav a {
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14.5px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: 0.15s;
+}
+.site-nav a:hover {
+  color: var(--white);
+}
+.site-nav a.active {
+  color: var(--white);
+  border-bottom-color: var(--white);
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border-radius: 999px;
+  padding: 9px 16px;
+  color: var(--blue-700);
+}
+.search-box input {
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  width: 180px;
+}
+.avatar-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: var(--white);
+  color: var(--blue-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 /* ===== Hero ===== */
 .hero {
   max-width: 760px;
@@ -165,17 +256,21 @@ body {
 }
 
 .card {
-  background: linear-gradient(160deg, var(--blue-600), var(--blue-700));
+  background: linear-gradient(
+    160deg,
+    var(--blue-600),
+    var(--blue-700)
+  ) !important;
   border-radius: var(--radius-lg) !important;
-  padding: 20px;
+  padding: 20px !important;
   color: var(--white) !important;
-  box-shadow: var(--shadow-card);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-height: 200px;
-  position: relative;
-  overflow: hidden;
+  box-shadow: var(--shadow-card) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  min-height: 200px !important;
+  position: relative !important;
+  overflow: hidden !important;
 }
 .card.milestone {
   animation: milestone-pop 0.6s ease;
@@ -329,8 +424,12 @@ body {
   font-weight: 700;
 }
 
+/* Comment panel wrapper + entrance animation. The individual comment items
+   (avatar-less text, timestamp, reactions, edit/delete) are styled in the
+   shared assets/styles/comments.css so they look/behave the same on every
+   page — this file only owns the panel chrome and the compose form. */
 .comment-panel {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 14px;
   padding: 14px;
   display: flex;
@@ -349,45 +448,20 @@ body {
   }
 }
 .comment-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-height: 160px;
+  gap: 8px;
+  max-height: 220px;
   overflow-y: auto;
 }
-.comment-empty {
+.comment-list li.comment-empty {
   margin: 0;
   font-size: 12.5px;
   color: rgba(255, 255, 255, 0.65);
-}
-.comment-item {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-}
-.comment-avatar {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  color: var(--white);
-  font-size: 11px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.comment-item strong {
-  font-size: 12px;
-  color: var(--white);
-  display: block;
-}
-.comment-item p {
-  margin: 1px 0 0;
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.4;
+  font-style: italic;
 }
 .comment-form {
   display: flex;
@@ -405,6 +479,7 @@ body {
   outline: none;
 }
 .comment-form button {
+  aspect-ratio: 1;
   background: var(--white);
   color: var(--blue-700);
   border: none;
@@ -413,25 +488,6 @@ body {
   font-weight: 700;
   font-size: 12px;
   cursor: pointer;
-}
-.heart-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.85);
-  display: flex;
-  align-items: center;
-  transition: transform 0.15s;
-}
-.heart-btn svg {
-  transition: 0.15s;
-}
-.heart-btn.hearted svg {
-  fill: var(--coral);
-  stroke: var(--coral);
-}
-.heart-btn:active {
-  transform: scale(1.3);
 }
 
 .empty-state {
@@ -621,68 +677,6 @@ body {
 }
 .favorite-btn:active {
   transform: scale(1.3);
-}
-
-/* ===== Comment panel ===== */
-.comment-panel {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin-top: 2px;
-}
-.comment-list {
-  list-style: none;
-  margin: 0 0 10px;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  max-height: 140px;
-  overflow-y: auto;
-}
-.comment-list li {
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.08);
-  padding: 6px 10px;
-  border-radius: 8px;
-}
-.comment-list li.comment-empty {
-  color: rgba(255, 255, 255, 0.55);
-  font-style: italic;
-  background: none;
-  padding: 0;
-}
-.comment-form {
-  display: flex;
-  gap: 8px;
-}
-.comment-form input {
-  flex: 1;
-  border: none;
-  border-radius: 999px;
-  padding: 8px 14px;
-  font-family: var(--font-body);
-  font-size: 12.5px;
-  background: rgba(255, 255, 255, 0.14);
-  color: var(--white);
-  outline: none;
-}
-.comment-form input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-.comment-form button {
-  background: var(--white);
-  color: var(--blue-700);
-  border: none;
-  border-radius: 999px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
 }
 
 /* ===== Icon sizing (Bootstrap Icons swapped in for inline SVGs) ===== */

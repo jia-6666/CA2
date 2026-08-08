@@ -24,28 +24,6 @@
 *{box-sizing:border-box;}
 body{margin:0;font-family:var(--font-body);background:var(--lavender-50);color:var(--ink-900);}
 
-/* ===== Header ===== */
-.site-header{
-  display:flex;align-items:center;gap:28px;
-  background:linear-gradient(135deg,var(--blue-600),var(--blue-700));
-  padding:14px 28px;border-radius:0 0 26px 26px;
-  box-shadow:0 8px 30px -14px rgba(47,62,176,.55);position:sticky;top:0;z-index:50;
-}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;}
-.brand-mark{font-family:var(--font-display);font-weight:700;font-size:13px;background:var(--white);color:var(--blue-700);padding:6px 9px;border-radius:9px;}
-.brand-name{font-family:var(--font-display);font-weight:600;color:var(--white);font-size:16px;}
-.site-nav{display:flex;gap:26px;}
-.site-nav a{color:rgba(255,255,255,.78);text-decoration:none;font-weight:500;font-size:14.5px;padding-bottom:4px;border-bottom:2px solid transparent;transition:.15s;}
-.site-nav a:hover{color:var(--white);}
-.site-nav a.active{color:var(--white);border-bottom-color:var(--white);}
-.header-actions{display:flex;align-items:center;gap:12px;}
-.search-box{display:flex;align-items:center;gap:8px;background:var(--white);border-radius:999px;padding:9px 16px;color:var(--blue-700);}
-.search-box input{border:none;outline:none;font-family:var(--font-body);font-size:13.5px;width:170px;}
-.avatar-btn{width:38px;height:38px;border-radius:50%;border:none;background:var(--white);color:var(--blue-700);display:flex;align-items:center;justify-content:center;cursor:pointer;}
-
-.eyebrow{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--accent-purple);font-weight:500;margin:0 0 8px;}
-.eyebrow.light{color:rgba(255,255,255,.75);}
-
 /* ===== Layout ===== */
 .layout{
   max-width:1180px;margin:0 auto;padding:34px 24px 60px;
@@ -68,6 +46,11 @@ body{margin:0;font-family:var(--font-body);background:var(--lavender-50);color:v
 }
 .composer-btn:hover{background:rgba(255,255,255,.24);}
 .composer-btn.selected{background:var(--white);color:var(--blue-700);}
+.composer-dest{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.85);font-size:12.5px;font-weight:600;}
+.composer-dest select{
+  font-family:var(--font-body);font-weight:600;font-size:12.5px;color:var(--blue-700);border:none;
+  border-radius:10px;padding:9px 10px;background:var(--white);cursor:pointer;
+}
 .composer-post{
   margin-left:auto;background:var(--amber);color:#5A3B00;border:none;font-weight:700;
   padding:11px 24px;border-radius:12px;cursor:pointer;font-size:13.5px;transition:.15s;
@@ -87,7 +70,7 @@ body{margin:0;font-family:var(--font-body);background:var(--lavender-50);color:v
 .showcase-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
 @media (max-width:640px){.showcase-grid{grid-template-columns:1fr;}}
 
-.project-card{background:var(--blue-600);border-radius:var(--radius-lg);overflow:hidden;color:var(--white);display:flex;flex-direction:column;}
+.project-card{background:var(--blue-600);border-radius:var(--radius-lg);overflow:hidden;color:var(--white);display:flex;flex-direction:column;position:relative;}
 .project-preview{height:150px;background:var(--code-bg);display:flex;align-items:center;justify-content:center;padding:14px;overflow:hidden;}
 .project-preview.screens{background:linear-gradient(135deg,#5A6BEA,#3846C4);}
 .project-preview img{width:100%;height:100%;object-fit:cover;border-radius:8px;}
@@ -104,53 +87,59 @@ body{margin:0;font-family:var(--font-body);background:var(--lavender-50);color:v
   align-self:flex-start;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;
   background:rgba(255,255,255,.16);padding:3px 9px;border-radius:999px;letter-spacing:.05em;
 }
-.project-links{display:flex;gap:14px;}
-.project-links a{
-  display:flex;align-items:center;gap:6px;color:var(--white);text-decoration:none;font-size:12.5px;font-weight:600;
-  opacity:.9;
+
+/* Single "open link" button shown only when the post actually has a
+   GitHub / demo link attached — never both, never a dead link. */
+.project-link-btn,.feed-link-btn{
+  display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.14);color:var(--white);
+  text-decoration:none;font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:999px;
+  transition:.15s;align-self:flex-start;
 }
-.project-links a:hover{opacity:1;text-decoration:underline;}
-.project-footer{
-  display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:16px;
+.project-link-btn:hover,.feed-link-btn:hover{background:rgba(255,255,255,.26);}
+
+/* ===== Standardised reaction / action row =====
+   Shared by both Student Projects Showcase cards and Life Outside Classroom
+   cards: like, comment, copy-link (only when the post has a link), pin. */
+.feed-actions{
+  display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:14px;
   border-top:1px solid rgba(255,255,255,.16);padding-top:12px;margin-top:2px;
 }
-.highfive-btn{
-  display:flex;align-items:center;gap:7px;background:none;border:none;color:var(--white);cursor:pointer;
-  font-weight:700;font-size:14px;transition:transform .12s;
+.feed-actions button{
+  background:none;border:none;color:rgba(255,255,255,.85);cursor:pointer;font-size:12.5px;font-weight:600;
+  display:flex;align-items:center;gap:5px;font-family:var(--font-body);
 }
-.highfive-btn:active{transform:scale(1.25) rotate(-8deg);}
-.highfive-btn.popped{animation:pop .4s ease;}
-@keyframes pop{0%{transform:scale(1);}50%{transform:scale(1.4) rotate(-10deg);}100%{transform:scale(1);}}
-.like-btn{background:none;border:none;color:rgba(255,255,255,.85);cursor:pointer;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;}
-.like-btn.liked{color:var(--coral);}
-.comment-btn-inline{
-  background:none;border:none;color:rgba(255,255,255,.85);cursor:pointer;display:flex;align-items:center;gap:6px;
-  font-size:13px;font-weight:600;font-family:var(--font-body);margin-left:auto;
+.feed-actions button:hover{color:var(--white);}
+.feed-actions button.liked{color:var(--coral);}
+.feed-actions .pin-toggle{margin-left:auto;}
+
+/* ===== Owner controls (edit / delete your own post) ===== */
+.owner-controls{position:absolute;top:10px;right:10px;display:flex;gap:6px;z-index:3;}
+.owner-edit-btn,.owner-delete-btn{
+  width:28px;height:28px;border-radius:50%;border:none;background:rgba(10,10,20,.4);color:#fff;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;transition:.15s;
+  backdrop-filter:blur(2px);
 }
-.project-footer .pin-toggle{margin-left:0;}
+.owner-edit-btn:hover{background:rgba(10,10,20,.6);}
+.owner-delete-btn:hover{background:var(--coral);}
 
 /* ===== Masonry feed ===== */
 .masonry{columns:2 220px;column-gap:20px;}
 @media (max-width:640px){.masonry{columns:1;}}
 .feed-card{
   break-inside:avoid;background:var(--blue-600);border-radius:18px;overflow:hidden;color:var(--white);
-  margin-bottom:20px;display:flex;flex-direction:column;
+  margin-bottom:20px;display:flex;flex-direction:column;position:relative;
 }
 .feed-card.text-only{background:var(--blue-500);}
-.feed-photo{width:100%;display:block;object-fit:cover;}
+/* No image attached: don't reserve any photo space, keep the card compact
+   around just the text / link instead of leaving an empty gap. */
+.feed-card.no-image .feed-body{padding-top:16px;}
+.feed-photo{width:100%;display:block;object-fit:cover;cursor:zoom-in;}
 .feed-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;}
 .feed-tag{
   align-self:flex-start;font-family:var(--font-mono);font-size:9.5px;text-transform:uppercase;
   background:rgba(255,255,255,.18);padding:3px 8px;border-radius:999px;letter-spacing:.05em;
 }
 .feed-title{font-weight:700;font-size:15px;margin:0;line-height:1.35;}
-.feed-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;border-top:1px solid rgba(255,255,255,.16);padding-top:10px;margin-top:2px;}
-.feed-actions button{
-  background:none;border:none;color:rgba(255,255,255,.85);cursor:pointer;font-size:12.5px;font-weight:600;
-  display:flex;align-items:center;gap:5px;
-}
-.feed-actions button.liked{color:var(--coral);}
-.feed-actions .pin-toggle{margin-left:auto;}
 
 /* ===== Sidebar ===== */
 .side-col{display:flex;flex-direction:column;gap:20px;position:sticky;top:96px;}
@@ -170,12 +159,6 @@ body{margin:0;font-family:var(--font-body);background:var(--lavender-50);color:v
 .highlight-card{background:linear-gradient(150deg,var(--blue-600),var(--blue-700));color:var(--white);}
 .highlight-card h3{color:var(--white);}
 .side-sub{font-size:13px;color:rgba(255,255,255,.82);line-height:1.5;margin:0 0 16px;}
-.side-cta{
-  background:var(--white);color:var(--blue-700);border:none;font-weight:700;padding:10px 16px;
-  border-radius:999px;cursor:pointer;font-size:13px;display:inline-flex;align-items:center;gap:6px;
-  text-decoration:none;
-}
-.side-cta:hover{filter:brightness(.97);}
 
 .toast{
   position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
@@ -206,8 +189,8 @@ body{margin:0;font-family:var(--font-body);background:var(--lavender-50);color:v
 }
 
 /* ===== Composer detail (upload / link inputs) ===== */
-.composer-detail{margin-bottom:14px;}
-.composer-detail.visible{display:block;}
+.composer-detail{margin-bottom:14px;display:flex;flex-direction:column;gap:10px;}
+.composer-detail.visible{display:flex;}
 .file-pick-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
 .file-pick-btn{
   display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);color:var(--white);
@@ -218,6 +201,11 @@ body{margin:0;font-family:var(--font-body);background:var(--lavender-50);color:v
 .image-preview{display:flex;align-items:center;gap:10px;}
 .image-preview img{width:56px;height:56px;object-fit:cover;border-radius:10px;}
 .image-preview span{color:rgba(255,255,255,.85);font-size:12.5px;}
+.remove-chip{
+  background:rgba(255,255,255,.16);border:none;color:var(--white);width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:10px;flex-shrink:0;
+}
+.remove-chip:hover{background:rgba(255,255,255,.3);}
 .url-input{
   width:100%;border:none;background:rgba(255,255,255,.14);color:var(--white);border-radius:12px;
   padding:12px 16px;font-family:var(--font-body);font-size:13.5px;outline:none;
@@ -233,12 +221,23 @@ body{margin:0;font-family:var(--font-body);background:var(--lavender-50);color:v
 .pin-toggle.pinned{color:var(--amber);}
 .pin-toggle:hover{color:var(--white);}
 
-/* ===== Comment panels ===== */
+/* ===== Comment panels =====
+   Individual comment items (timestamp, edit/delete, emoji reactions) are
+   styled once below in the shared "Comment system" block — this rule only
+   owns the panel container and the "add a comment" form.
+   The entrance animation is intentionally more pronounced than a quick
+   fade so opening a comment panel reads as a deliberate, visible motion. */
 .comment-panel{
   background:rgba(0,0,0,.15);border-radius:12px;padding:12px 14px;margin-top:2px;
+  animation:panel-open .48s cubic-bezier(.16,1,.3,1);
+  transform-origin:top center;
 }
-.comment-list{list-style:none;margin:0 0 10px;padding:0;display:flex;flex-direction:column;gap:6px;max-height:140px;overflow-y:auto;}
-.comment-list li{font-size:12.5px;color:rgba(255,255,255,.9);background:rgba(255,255,255,.08);padding:6px 10px;border-radius:8px;}
+@keyframes panel-open{
+  from{opacity:0;transform:translateY(-16px) scale(.96);}
+  60%{opacity:1;}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+.comment-list{list-style:none;margin:0 0 10px;padding:0;display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto;}
 .comment-list li.comment-empty{color:rgba(255,255,255,.55);font-style:italic;background:none;padding:0;}
 .comment-form{display:flex;gap:8px;}
 .comment-form input{
@@ -258,8 +257,130 @@ body{margin:0;font-family:var(--font-body);background:var(--lavender-50);color:v
 .pinned-list li span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .pinned-list li button{background:none;border:none;color:var(--amber);cursor:pointer;flex-shrink:0;}
 
+/* ===== Lightbox (click an image to enlarge it) ===== */
+.lightbox-overlay{
+  position:fixed;inset:0;background:rgba(8,9,20,.9);display:flex;align-items:center;justify-content:center;
+  z-index:200;opacity:0;pointer-events:none;transition:opacity .25s ease;padding:40px;
+}
+.lightbox-overlay.show{opacity:1;pointer-events:auto;}
+.lightbox-overlay img{
+  max-width:min(92vw,1100px);max-height:88vh;border-radius:14px;object-fit:contain;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.6);transform:scale(.96);transition:transform .25s ease;
+}
+.lightbox-overlay.show img{transform:scale(1);}
+.lightbox-close{
+  position:absolute;top:20px;right:24px;background:rgba(255,255,255,.14);border:none;color:#fff;
+  width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:16px;transition:.15s;
+}
+.lightbox-close:hover{background:rgba(255,255,255,.28);}
+
 @media (max-width:640px){
   .composer-actions{gap:8px;}
   .composer-btn{flex:1 1 auto;justify-content:center;font-size:12px;padding:10px 10px;}
+  .composer-dest{flex:1 1 100%;justify-content:space-between;order:9;}
+  .composer-dest select{flex:1;}
   .composer-post{width:100%;margin-left:0;order:10;}
+}
+
+/* =====================================================================
+   Comment system (shared markup used by both the Showcase and the Life
+   Outside Classroom comment panels).
+
+   Default theme below assumes comments sit on a dark/colour-gradient
+   background (project & post cards), which is the only kind of card this
+   page has.
+   ===================================================================== */
+
+/* stronger entrance animation than a quick fade so a freshly opened
+   comment panel visibly "cascades" in rather than just popping into view */
+@keyframes comment-in {
+  from { opacity: 0; transform: translateY(14px) scale(.95); }
+  60%  { opacity: 1; }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.comment-item{
+  animation: comment-in .5s cubic-bezier(.16,1,.3,1) both;
+}
+/* stagger the first handful of items so a freshly opened panel "cascades" in */
+.comment-item:nth-child(1){animation-delay:0s;}
+.comment-item:nth-child(2){animation-delay:.07s;}
+.comment-item:nth-child(3){animation-delay:.14s;}
+.comment-item:nth-child(4){animation-delay:.21s;}
+.comment-item:nth-child(5){animation-delay:.28s;}
+.comment-item:nth-child(n+6){animation-delay:.32s;}
+
+.comment-item{
+  display:flex;flex-direction:column;gap:4px;
+  background:rgba(255,255,255,.08);
+  border-radius:10px;padding:8px 10px;
+}
+.comment-head{
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  font-size:11.5px;color:rgba(255,255,255,.75);
+}
+.comment-author{font-weight:700;color:rgba(255,255,255,.95);}
+.comment-dot{opacity:.6;}
+.comment-time{cursor:default;}
+.comment-edited{font-style:italic;opacity:.7;}
+.comment-text{margin:0;font-size:12.5px;line-height:1.45;color:rgba(255,255,255,.95);word-break:break-word;}
+
+.comment-footer{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px;}
+.comment-spacer{flex:1;}
+
+.comment-react-btn{
+  display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border:none;
+  color:rgba(255,255,255,.9);font-size:11px;font-weight:600;padding:5px 9px;border-radius:999px;
+  cursor:pointer;transition:.15s;font-family:var(--font-body);
+}
+.comment-react-btn:hover{background:rgba(255,255,255,.25);}
+.comment-react-btn.active{background:rgba(255,255,255,.9);color:var(--blue-700);}
+
+.comment-edit-btn,.comment-delete-btn{
+  background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.85);width:26px;height:26px;
+  border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;
+  font-size:12px;transition:.15s;
+}
+.comment-edit-btn:hover{background:rgba(255,255,255,.25);}
+.comment-delete-btn:hover{background:var(--coral,#ff6b6b);color:#fff;}
+
+.reaction-pills{display:flex;gap:5px;flex-wrap:wrap;}
+.reaction-pill{
+  display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.14);border:1px solid transparent;
+  color:rgba(255,255,255,.95);font-size:11px;padding:3px 8px;border-radius:999px;cursor:pointer;
+  transition:.15s;font-family:var(--font-body);
+}
+.reaction-pill b{font-weight:700;}
+.reaction-pill:hover{background:rgba(255,255,255,.26);}
+.reaction-pill.mine{background:rgba(255,255,255,.95);color:var(--blue-700);border-color:rgba(255,255,255,.95);}
+
+/* ---- floating emoji picker popover (Instagram-style reaction tray) ---- */
+.emoji-picker-pop{
+  position:fixed;z-index:9999;background:var(--white,#fff);border-radius:16px;
+  padding:8px;box-shadow:0 14px 34px -12px rgba(23,24,51,.45);
+  display:grid;grid-template-columns:repeat(6,1fr);gap:2px;
+  opacity:0;transform:translateY(6px) scale(.94);transition:opacity .14s ease,transform .14s ease;
+  max-width:min(280px,92vw);
+}
+.emoji-picker-pop.show{opacity:1;transform:translateY(0) scale(1);}
+.emoji-picker-pop .emoji-opt{
+  background:none;border:none;font-size:20px;padding:6px;border-radius:10px;cursor:pointer;
+  line-height:1;transition:transform .12s ease,background .12s ease;
+}
+.emoji-picker-pop .emoji-opt:hover{background:var(--lavender-50,#EEF0FC);transform:scale(1.25);}
+
+/* ---- flood/burst effect when a reaction is picked ---- */
+@keyframes emoji-flood-rise{
+  0%{transform:translate(-50%,-50%) translate(0,0) scale(.5) rotate(0deg);opacity:0;}
+  18%{opacity:1;transform:translate(-50%,-50%) translate(calc(var(--dx) * .25),-24px) scale(1.2) rotate(calc(var(--rot) * .3));}
+  100%{transform:translate(-50%,-50%) translate(var(--dx),-150px) scale(.85) rotate(var(--rot));opacity:0;}
+}
+.emoji-flood{
+  position:fixed;z-index:10000;font-size:22px;pointer-events:none;
+  animation-name:emoji-flood-rise;animation-timing-function:ease-out;animation-fill-mode:forwards;
+  will-change:transform,opacity;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .comment-item,.emoji-flood,.emoji-picker-pop{animation:none !important;transition:none !important;}
 }

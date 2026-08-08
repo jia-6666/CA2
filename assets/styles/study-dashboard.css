@@ -1,0 +1,15 @@
+main {
+  height: calc(100vh - 5em);
+  width: 100vw;
+  margin: 0 !important;
+}
+input[type="checkbox"]:checked + .text-decoration-line-through-checked {
+  text-decoration: line-through;
+}
+.remove-task:hover{
+  background-color: lightcoral;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  transition: all 500ms;
+}
