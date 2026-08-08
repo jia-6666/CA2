@@ -49,7 +49,7 @@ body {
 
 .carousel-control-prev,
 .carousel-control-next {
-  width: 5%;
+  width: max(5%, 4rem); /* ensures the band is always wide enough to fully contain the arrow circle, so it can't overflow past the page edge at any screen size */
 }
 
 #soc-carousel.is-sliding .carousel-control-prev,
@@ -91,32 +91,16 @@ body {
   min-width: 0; /* allows text to be clipped instead of forcing the header to grow */
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  background: none;
-  border: none;
+  padding: 1rem 1.5rem;
   color: #fff;
   font-weight: 700;
   font-size: 1.5rem;
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  text-align: left;
 }
 
 .intro-bookmark-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.intro-bookmark-chevron {
-  font-size: 0.9rem;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
-
-.intro-bookmark.is-expanded .intro-bookmark-chevron {
-  transform: rotate(180deg);
 }
 
 .intro-bookmark-toggle {
@@ -151,7 +135,7 @@ body {
   margin: 0;
 }
 
-.intro-bookmark.is-expanded .intro-bookmark-content {
+.intro-bookmark.is-open .intro-bookmark-content {
   grid-template-rows: 1fr;
   padding: 0 1.5rem 1.25rem;
 }
