@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/styles/global.css" />
   <script type="module" src="assets/components/navbar.js"></script>
   <link rel="stylesheet" href="assets/styles/study-dashboard.css" />
+  <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -24,17 +25,19 @@
     <div class="col-lg-6 col-md-12 d-flex flex-column gap-3 h-100">
 
       <!-- Pomodoro Timer -->
-      <div class="card bg-white border-0 shadow-sm p-3 text-center dashboard-card">
-        <h4 class="fw-bold mb-2">Pomodoro Timer</h4>
+      <div class="card bg-white border-0 shadow-sm p-3 text-center">
+        <h1 class="fw-bold mb-2">Pomodoro Timer</h1>
 
         <!-- Display Controls -->
         <div class="d-flex align-items-center justify-content-center gap-3 my-2">
-          <button class="btn btn-outline-secondary rounded-circle btn-adjust" id="decreaseBtn" title="Decrease 5 min">
-            <i class="bi bi-dash-lg"></i>
+          <button class="btn btn-outline-secondary rounded-circle" id="decreaseBtn"
+            title="Decrease 5 min">
+            <i class="bi bi-dash-lg fs-3"></i>
           </button>
-          <div class="display-3 fw-bold text-dark timer-num" id="timerDisplay">25:00</div>
-          <button class="btn btn-outline-secondary rounded-circle btn-adjust" id="increaseBtn" title="Increase 5 min">
-            <i class="bi bi-plus-lg"></i>
+          <div class="display-3 fw-bold text-dark" id="timerDisplay">25:00</div>
+          <button class="btn btn-outline-secondary rounded-circle" id="increaseBtn"
+            title="Increase 5 min">
+            <i class="bi bi-plus-lg fs-3"></i>
           </button>
         </div>
 
@@ -68,7 +71,7 @@
       </div>
 
       <!-- Task UI -->
-      <div class="card shadow-sm border-0 dashboard-card d-flex flex-column flex-grow-1 overflow-hidden">
+      <div class="card shadow-sm border-0 d-flex flex-column flex-grow-1 overflow-hidden">
         <div class="card-header bg-white border-0 fw-bold fs-5 pt-3 pb-2">
           <i class="bi bi-check2-square me-2 text-primary"></i>Tasks
         </div>
@@ -87,9 +90,8 @@
 
     <!-- RIGHT HALF: Video Container -->
     <div class="col-lg-6 col-md-12 h-100 d-flex">
-      <div
-        class="card border-0 shadow-sm dashboard-card w-100 overflow-hidden d-flex align-items-center justify-content-center">
-        <div class="display-3 fw-bold text-white timer-num" id="timerDisplayMobile">25:00</div>
+      <div class="card border-0 shadow-sm w-100 overflow-hidden d-flex align-items-center justify-content-center">
+        <div class="display-3 fw-bold text-white" id="timerDisplayMobile">25:00</div>
         <div id="audio">
           <input type="checkbox" id="toggle-trigger" checked>
           <i class="bi bi-volume-mute fs-2" id="mute"></i>
@@ -98,6 +100,9 @@
         <video id="plantVideo" class="w-100 h-100 object-fit-cover" muted playsinline loop preload="auto">
           <source id="plantVideoSource" src="assets/videos/tree_growing.webm" type="video/webm">
         </video>
+        <audio id="music">
+          <source src="" type="audio/mpeg">
+        </audio>
       </div>
     </div>
 

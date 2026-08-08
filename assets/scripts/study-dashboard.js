@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let timerInterval = null;
   let isRunning = false;
   let currentPlant = "tree"; // Default: tree, wheat, or flower
+  let isMute = false;
 
   const timerDisplay = document.getElementById("timerDisplay");
   const timerDisplayMobile = document.getElementById("timerDisplayMobile");
@@ -19,6 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const decreaseBtn = document.getElementById("decreaseBtn");
   const timeSlider = document.getElementById("timeSlider");
   const plantSelect = document.getElementById("plantSelect");
+  const toggleTrigger = document.getElementById("toggle-trigger");
+  const musicControl = document.getElementById("music");
+  const musics = [
+    "bubblegum.mp3", "ditto.mp3", "supernatural.mp3"
+  ]
+  const randomMusic = musics[Math.floor(Math.random() * musics.length)];
+  musicControl.getElementsByTagName("source")[0].src = `assets/audio/${randomMusic}`;
+  musicControl.load();
 
   const startBtn = document.getElementById("startBtn");
   const resetBtn = document.getElementById("resetBtn");
@@ -70,12 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleTimer() {
     if (isRunning) {
       plantVideo.pause();
+      musicControl.pause();
       setControlsDisabled(false);
       clearInterval(timerInterval);
       startBtn.textContent = 'Start';
       startBtn.classList.replace('btn-danger', 'btn-success');
     } else {
       plantVideo.play();
+      musicControl.play();
       setControlsDisabled(true);
       timerInterval = setInterval(tick, 1000);
       startBtn.textContent = 'Pause';
@@ -111,7 +122,9 @@ document.addEventListener("DOMContentLoaded", () => {
     timeRemaining = timerDuration;
     updateDisplay();
     plantVideo.pause();
+    musicControl.pause();
     plantVideo.currentTime = 0;
+    musicControl.currentTime = 0;
   }
 
   increaseBtn.addEventListener("click", () => {
@@ -133,6 +146,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startBtn.addEventListener("click", toggleTimer);
   resetBtn.addEventListener("click", resetTimer);
+
+  toggleTrigger.addEventListener("click", () => {
+    isMute = !isMute;
+    if (isMute) {
+      musicControl.volume = 0;
+    }
+    else {
+      musicControl.volume = 1;
+    }
+
+  });
 
   const taskList = document.getElementById("taskList");
   const taskForm = document.getElementById("taskForm");
@@ -174,8 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
       taskInput.value = "";
     }
     if (uuid) {
-      const taskInput = document.getElementById(uuid);
-      taskInput.addEventListener("click", () => removeTask(uuid));
       const taskRemove = document.getElementById(`${uuid}-remove`);
       taskRemove.addEventListener("click", () => removeTask(uuid));
     }

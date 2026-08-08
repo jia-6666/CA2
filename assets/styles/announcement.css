@@ -63,7 +63,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, #1a3ada, #202f7ebd, #1a224de5);
+  background: linear-gradient(0deg, #1c36b8c9, #202f7ebd, #1a224de5);
   z-index: 1;
 }
 
@@ -157,14 +157,14 @@
 
 /* Darker Blue Pill Button */
 .btn-signup {
-  background-color: oklch(0.38 0.18 271.46);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: oklch(0.38 0.18 271.46) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   transition: all 0.2s ease-in-out;
 }
 
 .btn-signup:hover {
-  background-color: oklch(0.32 0.18 271.46);
-  transform: translateY(-1px);
+  background-color: oklch(0.32 0.18 271.46) !important;
+  transform: translateY(-1px) !important;
 }
 
 @keyframes fadeIn {
