@@ -6,10 +6,22 @@ main {
 input[type="checkbox"]:checked + .text-decoration-line-through-checked {
   text-decoration: line-through;
 }
-.remove-task:hover{
+.remove-task:hover {
   background-color: lightcoral;
   border-radius: 50%;
   cursor: pointer;
   color: white;
   transition: all 500ms;
+}
+#timerDisplayMobile {
+  position: absolute;
+  top: 0;
+  display: none;
+  background-color: transparent;
+}
+
+@media (max-width: 991px) {
+  #timerDisplayMobile {
+    display: block;
+  }
 }

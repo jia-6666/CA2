@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPlant = "tree"; // Default: tree, wheat, or flower
 
   const timerDisplay = document.getElementById("timerDisplay");
+  const timerDisplayMobile = document.getElementById("timerDisplayMobile");
   const increaseBtn = document.getElementById("increaseBtn");
   const decreaseBtn = document.getElementById("decreaseBtn");
   const timeSlider = document.getElementById("timeSlider");
@@ -45,6 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const mins = Math.floor(timeRemaining / 60);
     const secs = timeRemaining % 60;
     timerDisplay.textContent = `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    if (window.innerWidth < 991) {
+      timerDisplayMobile.textContent = `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
   }
 
   function setTimerMinutes(mins) {
