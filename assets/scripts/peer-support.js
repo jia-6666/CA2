@@ -220,7 +220,7 @@
      *             used as a fallback for any handler that isn't provided.
      */
     function bind(panelEl, comments, handlers = {}) {
-      const fire = (type) => (handlers[type] || handlers.onChange || (() => {}))();
+      const fire = (type) => (handlers[type] || handlers.onChange || (() => { }))();
 
       const list = panelEl.querySelector(".comment-list");
       if (list) {
