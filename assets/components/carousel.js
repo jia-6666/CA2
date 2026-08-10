@@ -51,7 +51,7 @@ export class Carousel extends HTMLElement {
    
           <img class="desktop" src="assets/images/announcements/${announcement.desktopImage}" alt="${announcement.title}" />
           <img class="mobile" src="assets/images/announcements/${announcement.mobileImage}" alt="${announcement.title}" />
-          <a href="${announcement.redirectURI || '#'}" target="_blank" rel="noopener noreferrer" class="position-absolute btn btn-primary rounded-pill px-4 py-2 fw-semibold border-0" style="background-color: #2b44b8;">
+          <a href="${announcement.redirectURI || '#'}" target="_blank" rel="noopener noreferrer" class="position-absolute btn btn-signup text-white rounded-pill px-4 py-2 fw-semibold border-0" style="background-color: #2b44b8;">
                 Click here to sign up
               </a>
         </figure>
@@ -63,7 +63,7 @@ export class Carousel extends HTMLElement {
     if (!this._db) return;
 
     try {
-      const announcements = await this._db.getByDate(new Date("2026-08-01"), new Date().toLocaleDateString('en-CA'));
+      const announcements = await this._db.getByDate(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toLocaleDateString('en-CA'), new Date().toLocaleDateString('en-CA'));
       this.shadowRootRef.innerHTML = `
       <link rel="stylesheet" href="assets/styles/announcement.css">
         ${this.generateChildElements(announcements)}

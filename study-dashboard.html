@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tools - School Of Computing</title>
+  <title>Study Dashboard</title>
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
   <style>
     @view-transition {navigation: auto;
     }
@@ -18,30 +19,35 @@
   <nav-bar></nav-bar>
 
   <!-- Split Screen Layout Grid -->
-  <main class="container-fluid p-3 row gap-3 gap-lg-0">
+  <main class="container-fluid p-3 row gap-3 gap-lg-0 m-0">
 
     <!-- LEFT HALF: Timer & Task UI -->
-    <div class="col-lg-6 col-md-6 d-flex flex-column gap-3 h-100">
+    <div class="col-lg-6 col-md-12 d-flex flex-column gap-3 h-100">
 
       <!-- Pomodoro Timer -->
-      <div class="card bg-white border-0 shadow-sm p-3 text-center dashboard-card">
-        <h4 class="fw-bold mb-2">Pomodoro Timer</h4>
+      <div class="card border-0 shadow-sm p-3 text-center">
+        <h1 class="fw-bold mb-2">Pomodoro Timer</h1>
 
         <!-- Display Controls -->
         <div class="d-flex align-items-center justify-content-center gap-3 my-2">
-          <button class="btn btn-outline-secondary rounded-circle btn-adjust" id="decreaseBtn" title="Decrease 5 min">
-            <i class="bi bi-dash-lg"></i>
+          <button class="btn btn-outline-light btn-circle" id="decreaseBtn" title="Decrease 5 min"
+            aria-label="Decrease 5 minutes">
+            <i class="bi bi-dash-lg fs-3"></i>
           </button>
-          <div class="display-3 fw-bold text-dark timer-num" id="timerDisplay">25:00</div>
-          <button class="btn btn-outline-secondary rounded-circle btn-adjust" id="increaseBtn" title="Increase 5 min">
-            <i class="bi bi-plus-lg"></i>
+
+          <div class="display-3 fw-bold text-light" id="timerDisplay">25:00</div>
+
+          <button class="btn btn-outline-light btn-circle" id="increaseBtn" title="Increase 5 min"
+            aria-label="Increase 5 minutes">
+            <i class="bi bi-plus-lg fs-3"></i>
           </button>
         </div>
 
         <!-- Time Slider -->
         <div class="px-4 my-2">
-          <input type="range" class="form-range" id="timeSlider" min="5" max="45" step="1" value="25">
-          <div class="d-flex justify-content-between text-muted small px-1">
+          <input type="range" class="form-range" id="timeSlider" min="5" max="45" step="1" value="25"
+            aria-label="Timer Duration Slider">
+          <div class="d-flex justify-content-between text-light small px-1">
             <span>5 min</span>
             <span>25 min</span>
             <span>45 min</span>
@@ -50,10 +56,10 @@
 
         <!-- Plant Select -->
         <div class="d-flex align-items-center justify-content-center gap-2 mt-2 mb-1">
-          <label for="plantSelect" class="form-label small fw-semibold mb-0 text-muted">
+          <label for="plantSelect" class="form-label small mb-0 text-light d-flex align-items-center">
             <i class="bi bi-flower1 text-success me-1"></i>Plant Type:
           </label>
-          <select id="plantSelect" class="form-select form-select-sm w-auto fw-medium shadow-sm">
+          <select id="plantSelect" class="form-select form-select-sm w-auto fw-medium shadow-sm text-dark">
             <option value="tree" selected>🌳 Tree</option>
             <option value="rose">🌹 Rose</option>
             <option value="sun-flower">🌻 Sun Flower</option>
@@ -62,36 +68,44 @@
 
         <!-- Actions -->
         <div class="d-flex justify-content-center gap-2 mt-3">
-          <button id="startBtn" class="btn btn-success px-4">Start</button>
-          <button id="resetBtn" class="btn btn-outline-secondary">Reset</button>
+          <a href="#plantVideo" id="startBtn" class="btn btn-success px-4">Start</a>
+          <button id="resetBtn" class="btn btn-outline-light">Reset</button>
         </div>
       </div>
 
       <!-- Task UI -->
-      <div class="card shadow-sm border-0 dashboard-card d-flex flex-column flex-grow-1 overflow-hidden">
-        <div class="card-header bg-white border-0 fw-bold fs-5 pt-3 pb-2">
-          <i class="bi bi-check2-square me-2 text-primary"></i>Tasks
+      <div class="card shadow-sm border-0 d-flex flex-column flex-grow-1 overflow-hidden">
+        <div class="card-header border-0 fw-bold fs-5 pt-3 pb-2 d-flex align-items-center">
+          <i class="bi bi-check2-square me-2 text-light"></i>Tasks
         </div>
         <div class="card-body d-flex flex-column overflow-hidden">
           <form class="input-group mb-3" id="taskForm">
-            <input type="text" id="taskInput" class="form-control" placeholder="Add a new task..." />
-            <button class="btn btn-primary" type="submit"><i class="bi bi-plus-lg"></i></button>
+            <input type="text" id="taskInput" class="form-control text-dark" placeholder="Add a new task..." required />
+            <button class="btn btn-primary d-flex align-items-center" type="submit" aria-label="Add Task"><i
+                class="bi bi-plus-lg"></i></button>
           </form>
-          <ul class="list-group" id="taskList">
-
-          </ul>
+          <ul class="list-group" id="taskList"></ul>
         </div>
       </div>
 
     </div>
 
     <!-- RIGHT HALF: Video Container -->
-    <div class="col-lg-6 col-md-6 h-100 d-flex">
+    <div class="col-lg-6 col-md-12 h-100 d-flex">
       <div
-        class="card border-0 shadow-sm dashboard-card w-100 overflow-hidden d-flex align-items-center justify-content-center bg-black">
+        class="card border-0 shadow-sm w-100 overflow-hidden d-flex align-items-center justify-content-center position-relative">
+        <div class="display-3 fw-bold text-white mt-2" id="timerDisplayMobile">25:00</div>
+        <div id="audio">
+          <input type="checkbox" id="toggle-trigger" checked aria-label="Toggle Audio">
+          <i class="bi bi-volume-mute fs-2" id="mute"></i>
+          <i class="bi bi-volume-up fs-2" id="up"></i>
+        </div>
         <video id="plantVideo" class="w-100 h-100 object-fit-cover" muted playsinline loop preload="auto">
           <source id="plantVideoSource" src="assets/videos/tree_growing.webm" type="video/webm">
         </video>
+        <audio id="music">
+          <source src="" type="audio/mpeg">
+        </audio>
       </div>
     </div>
 

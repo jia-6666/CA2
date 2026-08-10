@@ -6,11 +6,6 @@
   --cca-blue-dark: #2d3fd6;
   --cca-blue: #3c56e6;
   --cca-blue-light: #6f86f5;
-  --cca-page-bg: #eef0fc;
-}
-
-body {
-  background-color: var(--cca-page-bg);
 }
 
 .cca-page {

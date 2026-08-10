@@ -1,158 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>@view-transition {navigation: auto;
-    }</style>
-    <link rel="stylesheet" href="assets/styles/global.css" />
-    <script type="module" src="assets/components/navbar.js"></script>
-    <link rel="stylesheet" href="assets/styles/navigation.css" />
-  </head>
-  <body>
-    <nav-bar></nav-bar>
-    <main class="container py-4">
- 
-      <!-- Search / "looking for" bar -->
-      <div class="search-wrap mb-4">
-        <form class="search-pill d-flex align-items-center" role="search" autocomplete="off">
-          <input
-            type="search"
-            id="searchInput"
-            name="q"
-            class="search-pill-input flex-grow-1"
-            placeholder='Looking for ... &quot;T2251&quot;'
-            aria-label="Search for a location"
-            autocomplete="off"
-          >
-          <button type="submit" class="search-pill-btn" aria-label="Search">
-            <i class="bi bi-search"></i>
-          </button>
-        </form>
-        <ul class="search-suggestions d-none" id="searchSuggestions"></ul>
-      </div>
- 
-      <div class="recent-row mb-4 d-none" id="recentRow">
-        <span class="recent-label"><i class="bi bi-clock-history"></i> Recent</span>
-        <div class="recent-chips" id="recentChips"></div>
-        <button type="button" class="recent-clear" id="recentClear">Clear</button>
-      </div>
- 
-      <!-- Map card -->
-      <section class="map-card mb-4" id="mapSection">
-        <div class="map-viewport" id="mapViewport">
-          <div class="map-wrap" id="mapWrap">
-            <img src="assets/images/navigation/campus-map.jpg" alt="SP School of Computing campus map" class="map-card-img" id="mapImg">
-          </div>
-          <div class="map-dim-overlay d-none" id="mapDimOverlay"></div>
-          <div class="map-marker d-none" id="mapMarker"></div>
-        </div>
-        <button type="button" class="map-reset-btn d-none" id="mapResetBtn" aria-label="Reset map view">
-          <i class="bi bi-x-lg"></i>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation</title>
+  <style>
+    @view-transition {navigation: auto;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/styles/global.css" />
+  <script type="module" src="assets/components/navbar.js"></script>
+  <link rel="stylesheet" href="assets/styles/navigation.css" />
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+  <nav-bar></nav-bar>
+  <main class="container py-4">
+
+    <!-- Search / "looking for" bar -->
+    <div class="search-wrap mb-4">
+      <form class="search-pill d-flex align-items-center" role="search" autocomplete="off">
+        <input type="search" id="searchInput" name="q" class="search-pill-input flex-grow-1"
+          placeholder='Looking for ... &quot;T2251&quot;' aria-label="Search for a location" autocomplete="off">
+        <button type="submit" class="search-pill-btn" aria-label="Search">
+          <i class="bi bi-search"></i>
         </button>
-        <div class="map-zoom-controls">
-          <button type="button" class="map-zoom-btn" id="zoomInBtn" aria-label="Zoom in">
-            <i class="bi bi-plus-lg"></i>
-          </button>
-          <button type="button" class="map-zoom-btn" id="zoomOutBtn" aria-label="Zoom out">
-            <i class="bi bi-dash-lg"></i>
-          </button>
+      </form>
+      <ul class="search-suggestions d-none" id="searchSuggestions"></ul>
+    </div>
+
+    <div class="recent-row mb-4 d-none" id="recentRow">
+      <span class="recent-label"><i class="bi bi-clock-history"></i> Recent</span>
+      <div class="recent-chips" id="recentChips"></div>
+      <button type="button" class="recent-clear" id="recentClear">Clear</button>
+    </div>
+
+    <!-- Map card -->
+    <section class="map-card mb-4" id="mapSection">
+      <div class="map-viewport" id="mapViewport">
+        <div class="map-wrap" id="mapWrap">
+          <img src="assets/images/navigation/campus-map.jpg" alt="SP School of Computing campus map"
+            class="map-card-img" id="mapImg">
         </div>
-        <p class="map-not-found d-none" id="mapNotFound">No match found for that search.</p>
-      </section>
- 
-      <!-- Shortcuts card -->
-      <section class="shortcuts-card">
-        <h2 class="shortcuts-title">Shortcuts</h2>
- 
-        <div class="shortcut-single">
-          <button
-            class="shortcut-route-btn"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#routeCarparkT22"
-            aria-expanded="false"
-            aria-controls="routeCarparkT22"
-          >
-            <span class="shortcut-route-icon"><i class="bi bi-p-circle"></i></span>
-            <span class="shortcut-route-label">Car Park <i class="bi bi-arrow-right"></i> T21/22</span>
-            <i class="bi bi-chevron-down shortcut-route-chevron"></i>
-          </button>
- 
-          <div class="collapse" id="routeCarparkT22">
-            <div class="route-stepper" id="stepperCarparkT22">
-              <div class="route-step-body">
-                <div class="route-step-content">
-                  <span class="route-step-counter">
-                    Step <span class="current">1</span> of <span class="total">4</span>
-                  </span>
-                  <p class="route-step-text"></p>
-                </div>
+        <div class="map-dim-overlay d-none" id="mapDimOverlay"></div>
+        <div class="map-marker d-none" id="mapMarker"></div>
+      </div>
+      <button type="button" class="map-reset-btn d-none" id="mapResetBtn" aria-label="Reset map view">
+        <i class="bi bi-x-lg"></i>
+      </button>
+      <div class="map-zoom-controls">
+        <button type="button" class="map-zoom-btn" id="zoomInBtn" aria-label="Zoom in">
+          <i class="bi bi-plus-lg"></i>
+        </button>
+        <button type="button" class="map-zoom-btn" id="zoomOutBtn" aria-label="Zoom out">
+          <i class="bi bi-dash-lg"></i>
+        </button>
+      </div>
+      <p class="map-not-found d-none" id="mapNotFound">No match found for that search.</p>
+    </section>
+
+    <!-- Shortcuts card -->
+    <section class="shortcuts-card">
+      <h2 class="shortcuts-title">Shortcuts</h2>
+
+      <div class="shortcut-single">
+        <button class="shortcut-route-btn" type="button" data-bs-toggle="collapse" data-bs-target="#routeCarparkT22"
+          aria-expanded="false" aria-controls="routeCarparkT22">
+          <span class="shortcut-route-icon"><i class="bi bi-p-circle"></i></span>
+          <span class="shortcut-route-label">Car Park <i class="bi bi-arrow-right"></i> T21/22</span>
+          <i class="bi bi-chevron-down shortcut-route-chevron"></i>
+        </button>
+
+        <div class="collapse" id="routeCarparkT22">
+          <div class="route-stepper" id="stepperCarparkT22">
+            <div class="route-step-body">
+              <div class="route-step-content">
+                <span class="route-step-counter">
+                  Step <span class="current">1</span> of <span class="total">4</span>
+                </span>
+                <p class="route-step-text"></p>
               </div>
-              <div class="route-step-controls">
-                <button type="button" class="route-step-btn" data-action="prev" aria-label="Previous step">
-                  <i class="bi bi-chevron-left"></i>
-                </button>
-                <div class="route-step-dots"></div>
-                <button type="button" class="route-step-btn" data-action="next" aria-label="Next step">
-                  <i class="bi bi-chevron-right"></i>
-                </button>
-              </div>
+            </div>
+            <div class="route-step-controls">
+              <button type="button" class="route-step-btn" data-action="prev" aria-label="Previous step">
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <div class="route-step-dots"></div>
+              <button type="button" class="route-step-btn" data-action="next" aria-label="Next step">
+                <i class="bi bi-chevron-right"></i>
+              </button>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="shortcut-single mt-3">
-          <button
-            class="shortcut-route-btn"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#routeT18AltElevator"
-            aria-expanded="false"
-            aria-controls="routeT18AltElevator"
-          >
-            <span class="shortcut-route-icon"><i class="bi bi-signpost-2"></i></span>
-            <span class="shortcut-route-label">T18 Alternate Elevator</span>
-            <i class="bi bi-chevron-down shortcut-route-chevron"></i>
-          </button>
-        
-          <div class="collapse" id="routeT18AltElevator">
-            <div class="route-stepper" id="stepperT18AltElevator">
-              <div class="route-step-body">
-                <div class="route-step-content">
-                  <span class="route-step-counter">
-                    Step <span class="current">1</span> of <span class="total">2</span>
-                  </span>
-                  <p class="route-step-text"></p>
-                </div>
+      <div class="shortcut-single mt-3">
+        <button class="shortcut-route-btn" type="button" data-bs-toggle="collapse" data-bs-target="#routeT18AltElevator"
+          aria-expanded="false" aria-controls="routeT18AltElevator">
+          <span class="shortcut-route-icon"><i class="bi bi-signpost-2"></i></span>
+          <span class="shortcut-route-label">T18 Alternate Elevator</span>
+          <i class="bi bi-chevron-down shortcut-route-chevron"></i>
+        </button>
+
+        <div class="collapse" id="routeT18AltElevator">
+          <div class="route-stepper" id="stepperT18AltElevator">
+            <div class="route-step-body">
+              <div class="route-step-content">
+                <span class="route-step-counter">
+                  Step <span class="current">1</span> of <span class="total">2</span>
+                </span>
+                <p class="route-step-text"></p>
               </div>
-              <div class="route-step-controls">
-                <button type="button" class="route-step-btn" data-action="prev" aria-label="Previous step">
-                  <i class="bi bi-chevron-left"></i>
-                </button>
-                <div class="route-step-dots"></div>
-                <button type="button" class="route-step-btn" data-action="next" aria-label="Next step">
-                  <i class="bi bi-chevron-right"></i>
-                </button>
-              </div>
+            </div>
+            <div class="route-step-controls">
+              <button type="button" class="route-step-btn" data-action="prev" aria-label="Previous step">
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <div class="route-step-dots"></div>
+              <button type="button" class="route-step-btn" data-action="next" aria-label="Next step">
+                <i class="bi bi-chevron-right"></i>
+              </button>
             </div>
           </div>
         </div>
- 
-        <div class="shortcut-wip">
-          <i class="bi bi-cone-striped"></i>
-          <span>More shortcuts coming soon</span>
-        </div>
-      </section>
-    </main>
+      </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-    <script src="assets/scripts/recent-visits.js"></script>
-    <script src="assets/scripts/navigation.js"></script>
-  </body>
+      <div class="shortcut-wip">
+        <i class="bi bi-cone-striped"></i>
+        <span>More shortcuts coming soon</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script src="assets/scripts/recent-visits.js"></script>
+  <script src="assets/scripts/navigation.js"></script>
+</body>
+
 </html>

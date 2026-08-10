@@ -1,13 +1,8 @@
 :root {
   --sp-blue: #3d56f0;
   --sp-blue-dark: #2c3fc4;
-  --sp-bg: #eef1fb;
   --sp-radius-lg: 1.75rem;
   --sp-radius-md: 1rem;
-}
-
-body {
-  background-color: var(--sp-bg);
 }
 
 /* Search pill */
@@ -277,9 +272,15 @@ body {
 }
 
 @keyframes map-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(255, 90, 95, 0.6); }
-  70%  { box-shadow: 0 0 0 16px rgba(255, 90, 95, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 90, 95, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 90, 95, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(255, 90, 95, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 90, 95, 0);
+  }
 }
 
 .map-not-found {
@@ -390,7 +391,9 @@ body {
 }
 
 .route-step-content {
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
 }
 
 .route-step-content.step-hidden {

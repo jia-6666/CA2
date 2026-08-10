@@ -1,6 +1,7 @@
 :root {
     --blue-600: #4763ffe7;
     --blue-700:#3553ff; 
+    --blue-layer:#2a43cfcb;
     --background: #f3f3fb;
     --radius: 35px;
 }   
@@ -23,7 +24,7 @@
     position: absolute;
     width: 300%;
     height: 3px;
-    left:-80%;
+    left:-90%;
     bottom: -8px;
     background: black;
 }
@@ -32,51 +33,74 @@
     font-size: 20px;
 }
 
-.container {
-    width: 67%;
-    margin: auto;
-
+.container1 {
+    width:67%;;
+    margin: 80px auto;
+    color: #ffffff;
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 300px 300px;
-
-    gap: 18px;
+    grid-template-columns:  40% 60%;
+    gap: 25px;
 }
 
-.brick {
+.card1 {
     background: linear-gradient(
         135deg,
         var(--blue-600),
         var(--blue-700)
     );
-
-    border-radius: var(--radius);
-
     color: white;
-    padding: 30px;
-
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    padding: 50px;
+    box-shadow: 0 15px 35px var(--shadow);
+    transition: all .5s ease;
+    text-align: center;
 }
-
-.brick h2 {
-    font-size: 45px;
-    font-weight: 300;
+.card1:hover {
+    transform: translateY(-5px);
+}
+.card1 h1{
+    text-align: left;
+    
+}
+.card1 h2{
+    text-align: left;
+    font-size:20px;
+    margin-bottom: 20px;
+}
+.card1 p{
+    text-align: left;
+    font-size:18px;
+}
+.card1 a,
+.card1 a:visited {
+    color: white;
+}.card1 a:hover {
+    color: rgb(255, 231, 187);
+}
+.card1.lefttop {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Left block */
 
-.brick1 {
+.left {
     grid-row: 1 / span 2;
 }
 
 /* Top-right block */
 
-.brick2 {
+.topright {
     grid-column: 2;
+    min-height: 290px;
 }
 
 /* Bottom-right block */
 
-.brick3 {
+.bottomright {
     grid-column: 2;
+    min-height: 290px;
 }

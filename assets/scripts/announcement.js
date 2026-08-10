@@ -1,4 +1,4 @@
-import { BaseDB } from '/databases/db.js';
+import { BaseDB } from './db.js';
 
 async function initAnnouncementDB() {
     const db = new BaseDB("Announcement", 1, "announcements");

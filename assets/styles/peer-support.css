@@ -24,15 +24,6 @@
   --mood-b: #2f3eb0;
 }
 
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  background: var(--lavender-50);
-  color: var(--ink-900);
-}
 main {
   max-width: 920px;
   margin: 0 auto;
