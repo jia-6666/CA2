@@ -4,7 +4,8 @@
     --blue-layer:#2a43cfcb;
     --background: #f3f3fb;
     --radius: 35px;
-}   
+}
+/* ---------------- Heading text ---------------- */   
 .heading {
     padding-top:50px;
     color:#253b8d;
@@ -32,7 +33,7 @@
 .heading p {
     font-size: 20px;
 }
-
+/* ---------------- LAYOUT ---------------- */
 .container1 {
     width:67%;;
     margin: 80px auto;

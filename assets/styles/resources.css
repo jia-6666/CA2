@@ -8,14 +8,14 @@
 
 /* ---------------- MAIN LAYOUT ---------------- */
 
-.container1 {
+.top-container {
     width:67%;;
     margin: 30px auto;
     color: #ffffff;
     display: grid;
     grid-template-columns: 100%;
     gap: 25px;
-}.container2 {
+}.niche-container {
     width:67%;;
     margin: 30px auto;
     margin-top: 0px;
@@ -26,19 +26,7 @@
 }
 
 /* ---------------- CARDS ---------------- */
-.topcard1 {
-    background: linear-gradient(
-        135deg,
-        var(--blue-600),
-        var(--blue-700)
-    );
-    color: white;
-    border-radius: 25px;
-    padding: 50px;
-    box-shadow: 0 15px 35px var(--shadow);
-    transition: all .5s ease;
-    text-align: center;
-}
+
 
 .card1 {
     background: linear-gradient(
@@ -80,6 +68,7 @@
     color: rgb(255, 231, 187);
     font-size: 20px;
 }
+/* ---------------- lefttop card ---------------- */
 .card1.lefttop {
     position: relative;
     overflow: hidden;
@@ -105,7 +94,7 @@
 }
 
 
-
+/* ---------------- right card ---------------- */
 .card1.right {
     grid-row: span 2;
     min-height: 830px;
@@ -132,7 +121,7 @@
     z-index: 2;
 }
 
-
+/* ---------------- leftbottom card ---------------- */
 .leftbottom {
     overflow: auto;
     min-height: 290px;
@@ -173,13 +162,14 @@
     text-decoration: underline;
     text-underline-offset: 10px;
 }
-.more-content {
+/* ---------------- Show more ---------------- */
+.show-more-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease;
 }
 
-.card1.show .more-content {
+.card1.show .show-more-content {
     max-height: 500px;
 }
 
