@@ -2,19 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Suggestion Board — School of Computing</title>
-  <style>
-    @view-transition {navigation: auto;
-    }
-  </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles/global.css" />
+  <link rel="stylesheet" href="assets/styles/global.css">
   <script type="module" src="assets/components/navbar.js"></script>
   <link rel="stylesheet" href="assets/styles/comments.css">
   <link rel="stylesheet" href="assets/styles/feedback.css">
@@ -36,7 +27,7 @@
       </div>
     </section>
 
-    <section class="controls">
+    <div class="controls">
       <div class="filter-chips" id="filterChips">
         <button class="chip active" data-filter="all">All ideas</button>
         <button class="chip" data-filter="Facilities">Facilities</button>
@@ -53,9 +44,9 @@
           <option value="discussed">Most Discussed</option>
         </select>
       </label>
-    </section>
+    </div>
 
-    <section class="board" id="board" aria-live="polite"></section>
+    <div class="board" id="board" aria-live="polite"></div>
     <p class="empty-state" id="emptyState" hidden>No ideas here yet — be the first to post one below.</p>
 
     <form class="composer" id="composerForm">

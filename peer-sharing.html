@@ -2,30 +2,22 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peer Sharing — School of Computing</title>
-  <style>
-    @view-transition {navigation: auto;
-    }
-  </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles/global.css" />
+  <link rel="stylesheet" href="assets/styles/global.css">
   <script type="module" src="assets/components/navbar.js"></script>
-  <link rel="stylesheet" href="assets/styles/peer-sharing.css" />
+  <link rel="stylesheet" href="assets/styles/peer-sharing.css">
 </head>
 
 <body>
   <nav-bar></nav-bar>
   <main class="layout">
+    <h1 style="display: none;">Peer Sharing</h1>
     <div class="main-col">
 
       <!-- Composer -->
-      <section class="composer-card">
+      <div class="composer-card">
         <input type="text" id="composerInput" class="composer-input"
           placeholder="Share something new… (a title or caption)" maxlength="140">
 
@@ -48,7 +40,7 @@
             <option value="life">Life Outside Classroom</option>
             <option value="showcase">Student Projects Showcase</option>
           </select>
-        </label>
+        </label> 
         <label class="composer-dest">
           <span>Tag</span>
           <select id="composerTag" aria-label="Tag your post">
@@ -63,7 +55,7 @@
         <button class="composer-post" id="composerPost" type="button">Post</button>
         </div>
         <p class="composer-hint" id="composerHint" hidden></p>
-      </section>
+      </div>
 
       <!-- Showcase / Life toggle -->
       <div class="section-tabs">
@@ -71,11 +63,11 @@
         <button class="tab" data-tab="life">Life Outside Classroom</button>
       </div>
 
-      <section class="tab-panel" id="panel-showcase">
+      <div class="tab-panel" id="panel-showcase">
         <div class="showcase-grid" id="showcaseGrid"></div>
-      </section>
+      </div>
 
-      <section class="tab-panel" id="panel-life" hidden>
+      <div class="tab-panel" id="panel-life" hidden>
       <div class="filter-chips" id="lifeFilterChips">
         <button class="chip active" data-tag="all">All</button>
         <button class="chip" data-tag="Meme">Meme</button>
@@ -86,17 +78,17 @@
         <button class="chip" data-tag="Photo">Photo</button>
       </div>
       <div class="masonry" id="lifeFeed"></div>
-    </section>
+    </div>
     </div>
 
     <aside class="side-col">
       <div class="side-card">
-        <h3>Top Shares This Week</h3>
+        <h2>Top Shares This Week</h2>
         <ol class="leaderboard" id="leaderboard"></ol>
       </div>
       <div class="side-card highlight-card">
         <p class="eyebrow light">Pinned</p>
-        <h3>Studying Resources</h3>
+        <h2>Studying Resources</h2>
         <p class="side-sub">Curated notes, past papers &amp; the LeetCode grind list, kept up to date by seniors.</p>
         <ul class="pinned-list" id="pinnedList"></ul>
       </div>
@@ -105,7 +97,7 @@
 
   <div class="lightbox-overlay" id="lightboxOverlay">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close image"><i class="bi bi-x-lg"></i></button>
-    <img id="lightboxImg" src="" alt="Enlarged image">
+    <img id="lightboxImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Enlarged image">
   </div>
 
   <div class="toast" id="toast" role="status"></div>
