@@ -149,9 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="badge ${role === "admin" ? "bg-danger" : "bg-primary"} text-uppercase px-3 py-2 mb-2">
               ${role} Account
             </span>
-            <h2 class="fw-bold mb-1">User Profile</h2>
-            <p class="text-muted small">${email}</p>
-            <button id="logoutBtn" class="btn btn-outline-secondary btn-sm rounded-pill px-4">Log Out</button>
+            <h2 class="fw-bold mb-1 text-light">User Profile</h2>
+            <p class="text-light small">${email}</p>
+            <button id="logoutBtn" class="btn btn-outline-light btn-sm rounded-pill px-4">Log Out</button>
           </div>
         </div>
 
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? `
           <div class="card shadow border-0 p-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="fw-bold mb-0"><i class="bi bi-database"></i> Announcement IndexedDB Manager</h4>
+              <h4 class="fw-bold mb-0 text-light"><i class="bi bi-database"></i> Announcement IndexedDB Manager</h4>
               <button id="addNewBtn" class="btn btn-success btn-sm"><i class="bi bi-plus-lg"></i> Add New Record</button>
             </div>
             
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const records = await db.getAll();
 
         if (records.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="5" class="text-center text-muted">No announcements found.</td></tr>`;
+            tableBody.innerHTML = `<tr><td colspan="5" class="text-center text-light">No announcements found.</td></tr>`;
             return;
         }
 
