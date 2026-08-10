@@ -1,5 +1,7 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css");
 
+/* Carousel */
+
 .carousel {
   anchor-name: --carsouel;
   width: 100%;
@@ -43,6 +45,8 @@
   content: "«";
   position-area: left center;
 }
+
+/* Item */
 
 .item {
   height: 100vh;
