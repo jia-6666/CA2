@@ -1,23 +1,87 @@
 main {
   height: calc(100vh - 5em);
-  width: 100vw;
-  margin: 0 !important;
 }
-input[type="checkbox"]:checked + .text-decoration-line-through-checked {
+
+.form-check-input:checked {
+  background-color: green !important;
+}
+
+.form-check-input:checked + .text-decoration-line-through-checked {
   text-decoration: line-through;
 }
+
+i.bi {
+  font-size: 1.5rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-task {
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
+.task-item {
+  min-height: 2.25rem;
+  width: 100%;
+}
+
+.task-item .form-check-input {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+/* Allow task text to wrap cleanly and prevent overflow */
+.task-item .form-check-label {
+  line-height: 1.2;
+  margin-bottom: 0;
+  flex: 1 1 auto; /* Allows text container to expand/shrink within flex layout */
+  min-width: 0; /* Necessary for text truncation/wrapping inside flex containers */
+  overflow-wrap: anywhere; /* Forces long unbroken strings (e.g., asbdfb...) to wrap */
+  word-break: break-word;
+}
+
+.remove-task {
+  font-size: 1.25rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
 .remove-task:hover {
   background-color: lightcoral;
   border-radius: 50%;
-  cursor: pointer;
   color: white;
-  transition: all 500ms;
 }
+
 #timerDisplayMobile {
   position: absolute;
   top: 0;
   display: none;
   background-color: transparent;
+}
+
+.btn-circle {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50% !important;
+  flex-shrink: 0;
+}
+
+.card {
+  --bs-card-bg: var(--primary-color) !important;
+  --bs-body-color: white;
 }
 
 @media (max-width: 991px) {
@@ -41,11 +105,11 @@ input[type="checkbox"]:checked + .text-decoration-line-through-checked {
   inset: 0;
   z-index: 3;
   appearance: none;
+  cursor: pointer;
 }
 
 #audio i {
   position: absolute;
-  /* inset: 0; */
 }
 
 #mute {
@@ -56,11 +120,10 @@ input[type="checkbox"]:checked + .text-decoration-line-through-checked {
   display: none;
 }
 
-#toggle-trigger:checked {
-  + #mute {
-    display: none;
-    + #up {
-      display: block;
-    }
-  }
+#toggle-trigger:checked ~ #mute {
+  display: none;
+}
+
+#toggle-trigger:checked ~ #up {
+  display: block;
 }

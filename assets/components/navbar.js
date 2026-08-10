@@ -13,7 +13,8 @@ export class Navbar extends HTMLElement {
       { href: "./peer-support.html", title: "Peer Support" },
       { href: "./cca.html", title: "CCA" },
       { href: "./contact.html", title: "Contact" },
-      { href: "./feedback.html", title: "Feedback" }
+      { href: "./feedback.html", title: "Feedback" },
+      { href: "./login.html", title: "Login"}
     ];
     this.firstLayerLinks = [
       { href: "./", title: "Home" },
